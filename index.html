@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPU Plattform Übersicht</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://i.imgur.com/IyXnm6Y.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s; /* Für Dark Mode Übergang */
+}
+
+header {
+    background-color: #003366; /* Dunkelblau */
+    color: #ffd700; /* Gelb */
+    padding: 20px;
+    text-align: center;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: background-color 0.3s, color 0.3s; /* Für Dark Mode Übergang */
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsiver Grid */
+    gap: 20px; /* Etwas mehr Abstand */
+    padding: 20px;
+    max-width: 1200px; /* Maximale Breite für bessere Darstellung auf großen Bildschirmen */
+    margin: 0 auto; /* Zentriert die Galerie */
+}
+
+.card {
+    background-color: #002244; /* Dunkleres Blau für die Karten */
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Etwas stärkerer Schatten */
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s, color 0.3s; /* Übergänge für alle relevanten Eigenschaften */
+    text-align: center;
+    color: #fff; /* Weisser Text für besseren Kontrast */
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stärkerer Schatten bei Hover */
+    background-color: #003366; /* Etwas heller beim Hover */
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    display: block; /* Verhindert unerwünschte Abstände unter dem Bild */
+}
+
+.card h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #ffd700; /* Gelb für die Titel */
+    text-transform: uppercase;
+}
+
+.card a {
+    text-decoration: none;
+    color: #002244; /* Dunkelblau für den Text im Button */
+    font-weight: bold;
+    background-color: #ffd700; /* Gelb für die Buttons */
+    padding: 12px 18px;
+    border-radius: 5px;
+    margin: 10px auto;
+    display: inline-block;
+    transition: background-color 0.3s, transform 0.2s, color 0.3s; /* Übergang für Textfarbe */
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.card a:hover {
+    background-color: #e6c000; /* Etwas dunkleres Gelb bei Hover */
+    transform: scale(1.05);
+    color: #003366;
+}
+
+/* Dark Mode */
+.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode header {
+    background-color: #1e1e1e;
+    color: #ffd700;
+}
+
+.dark-mode .card {
+    background-color: #282828; /* Dunkleres Grau für die Karten im Dark Mode */
+    color: #e0e0e0;
+}
+
+.dark-mode .card h3 {
+    color: #ffd700;
+}
+
+.dark-mode .card a {
+    background-color: #333333;
+    color: #ffd700;
+}
+
+.dark-mode .card a:hover {
+    background-color: #444444;
+}
+    </style>
+</head>
+<body>
+
+<header>MPU Plattform Übersicht</header>
+
+<div class="gallery">
+    <div class="card">
+        <img src="https://i.imgur.com/jnqFj47.jpeg" alt="Plattform 1">
+        <h3>MPU PLATFORM ROM</h3>
+        <a href="https://zaha175.github.io/MPUPLATFORMPET/">Zur Plattform</a>
+    </div>
+    <div class="card">
+        <img src="https://i.imgur.com/cVNquR7.jpeg" alt="Plattform 2">
+        <h3>MPU PLATFORM DE</h3>
+        <a href="https://zaha175.github.io/MPUPLATFORMDE/">Zur Plattform</a>
+    </div>
+    <div class="card">
+        <img src="https://i.imgur.com/cVNquR7.jpeg" alt="Plattform 3">
+        <h3>MPU PLATFORM RU</h3>
+        <a href="MPUPLATFORM26.html">Zur Plattform</a>
+    </div>
+    <div class="card">
+        <img src="https://i.imgur.com/cVNquR7.jpeg" alt="Plattform 4">
+        <h3>MPU PLATFORM EN</h3>
+        <a href="MPUPLATFORM27.html">Zur Plattform</a>
+    </div>
+    <div class="card">
+        <img src="https://i.imgur.com/cVNquR7.jpeg" alt="Plattform 5">
+        <h3>MPU PLATFORM HUN</h3>
+        <a href="MPUPLATFORM26.html">Zur Plattform</a>
+    </div>
+    <div class="card">
+        <img src="https://i.imgur.com/cVNquR7.jpeg" alt="Plattform 6">
+        <h3>MPU PLATFORM POL</h3>
+        <a href="MPUPLATFORM27.html">Zur Plattform</a>
+    </div>
+    <div class="card">
+        <img src="https://i.imgur.com/cVNquR7.jpeg" alt="Plattform 7">
+        <h3>MPU PLATFORM FR</h3>
+        <a href="MPUPLATFORM26.html">Zur Plattform</a>
+    </div>
+    <div class="card">
+        <img src="https://i.imgur.com/cVNquR7.jpeg" alt="Plattform 8">
+        <h3>MPU PLATFORM US</h3>
+        <a href="MPUPLATFORM27.html">Zur Plattform</a>
+    </div>
+    <div class="card">
+        <img src="https://i.imgur.com/cVNquR7.jpeg" alt="Plattform 9">
+        <h3>MPU PLATFORM CA</h3>
+        <a href="#">Zur Plattform</a>
+    </div>
+    <div class="card">
+        <img src="https://i.imgur.com/cVNquR7.jpeg" alt="Plattform 10">
+        <h3>MPU PLATFORM AU</h3>
+        <a href="#">Zur Plattform</a>
+    </div>
+    <div class="card">
+        <img src="https://i.imgur.com/cVNquR7.jpeg" alt="Plattform 11">
+        <h3>MPU PLATFORM IT</h3>
+        <a href="#">Zur Plattform</a>
+    </div>
+    <div class="card">
+        <img src="https://i.imgur.com/cVNquR7.jpeg" alt="Plattform 12">
+        <h3>MPU PLATFORM JP</h3>
+        <a href="#">Zur Plattform</a>
+    </div>
+</div>
+
+<script>
+    const toggleDarkMode = () => {
+        document.body.classList.toggle('dark-mode');
+    };
+</script>
+
+<button onclick="toggleDarkMode()" style="position: fixed; top: 10px; right: 10px; padding: 10px; background-color: #003366; color: #ffd700; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">Dark Mode</butto
