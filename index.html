@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KOMMANDO PLATFORM - Mission Control for Your Digital Life</title>
-  <meta name="description" content="Professionelle Tools für MPU-Training, Reaktionstests, Alterungsstopp-Technologien und Trading – alles in einer Plattform.">
-  <meta name="keywords" content="MPU Training, Reaktionstest, Alterungsstopp, Trading Vola, Spieleplattform">
+  <title>KOMMANDO PLATFORM - Mission Control für Ihr digitales Leben</title>
+  <meta name="description" content="Die KOMMANDO-Plattform: MPU-Training, Alterungsstopp-Technologien, Trading-Tools und Simulationen in einem kompletten digitalen Ökosystem.">
+  <meta name="keywords" content="MPU Training, Reaktionstest, Alterungsstopp, Trading, Simulation, KOMMANDO, DAX Daytrading, JUNGSINGULÄR, KerrCode">
   <meta name="author" content="zaha175">
   <meta property="og:title" content="KOMMANDO PLATFORM">
-  <meta property="og:description" content="Professionelle Tools für MPU-Training, Reaktionstests, Alterungsstopp-Technologien und Trading – alles in einer Plattform.">
+  <meta property="og:description" content="Die KOMMANDO-Plattform: MPU-Training, Alterungsstopp-Technologien, Trading-Tools und Simulationen in einem kompletten digitalen Ökosystem.">
   <meta property="og:image" content="https://cdn.gamma.app/fhpleqvbjim2f32/9aa69d36efe044198d779e76539fe786/original/KOMMANDO.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -26,6 +26,10 @@
       --card-dark: #2d2d2d;
       --header-light: #003366;
       --header-dark: #002244;
+      --mpu-color: #5DA05D;
+      --aging-color: #0066cc;
+      --trading-color: #006600;
+      --simulation-color: #6600cc;
     }
     
     body {
@@ -115,6 +119,42 @@
       color: white;
     }
     
+    .btn-mpu {
+      background-color: var(--mpu-color);
+      color: white;
+    }
+    
+    .btn-mpu:hover {
+      background-color: #478F47;
+    }
+    
+    .btn-aging {
+      background-color: var(--aging-color);
+      color: white;
+    }
+    
+    .btn-aging:hover {
+      background-color: #0055aa;
+    }
+    
+    .btn-trading {
+      background-color: var(--trading-color);
+      color: white;
+    }
+    
+    .btn-trading:hover {
+      background-color: #005500;
+    }
+    
+    .btn-simulation {
+      background-color: var(--simulation-color);
+      color: white;
+    }
+    
+    .btn-simulation:hover {
+      background-color: #5500aa;
+    }
+    
     .hero {
       background-image: url('https://cdn.gamma.app/fhpleqvbjim2f32/2e0dd43a1cac422dba95dbbb19a57d28/original/m5jbKxn54d6Q01a4tMJgN.jpg');
       background-size: cover;
@@ -194,6 +234,22 @@
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
     }
     
+    .card-mpu {
+      border-top: 4px solid var(--mpu-color);
+    }
+    
+    .card-aging {
+      border-top: 4px solid var(--aging-color);
+    }
+    
+    .card-trading {
+      border-top: 4px solid var(--trading-color);
+    }
+    
+    .card-simulation {
+      border-top: 4px solid var(--simulation-color);
+    }
+    
     .card-icon {
       width: 64px;
       height: 64px;
@@ -201,9 +257,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: var(--primary-color);
-      color: white;
       border-radius: 50%;
+      color: white;
+    }
+    
+    .card-icon-mpu {
+      background-color: var(--mpu-color);
+    }
+    
+    .card-icon-aging {
+      background-color: var(--aging-color);
+    }
+    
+    .card-icon-trading {
+      background-color: var(--trading-color);
+    }
+    
+    .card-icon-simulation {
+      background-color: var(--simulation-color);
     }
     
     .pricing-card {
@@ -402,6 +473,46 @@
       color: var(--header-dark);
     }
     
+    .platform-image {
+      border-radius: 0.5rem;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+      object-fit: cover;
+      width: 100%;
+      height: 350px;
+    }
+    
+    .platform-image:hover {
+      transform: scale(1.02);
+    }
+    
+    .screenshot-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    
+    .screenshot {
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 120px;
+    }
+    
+    .screenshot:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+    
+    .screenshot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
     @media (max-width: 768px) {
       .hero h1 {
         font-size: 2rem;
@@ -418,6 +529,10 @@
       .price {
         font-size: 2rem;
       }
+      
+      .platform-image {
+        height: 250px;
+      }
     }
     
     @media (max-width: 640px) {
@@ -428,6 +543,14 @@
       .tab-btn {
         padding: 8px 15px;
         font-size: 0.9rem;
+      }
+      
+      .screenshot-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+      
+      .screenshot {
+        height: 100px;
       }
     }
   </style>
@@ -462,7 +585,7 @@
     <section class="hero">
       <div class="hero-content">
         <h1>MISSION CONTROL FÜR DEIN DIGITALES LEBEN</h1>
-        <p>Professionelle Tools für MPU-Training, Reaktionstest, Alterungsstopp und Trading – alles in einer integrierten Plattform.</p>
+        <p>Von MPU-Vorbereitung bis Trading, von Alterungsstopp bis Quantensimulation – entdecke die KOMMANDO-Plattform, dein digitales Ökosystem.</p>
         <div class="flex justify-center gap-4 flex-wrap">
           <a href="#" class="btn-primary" onclick="switchTab('pricing')">PREISE ANZEIGEN</a>
           <a href="#" class="btn-secondary" onclick="goToDashboard()">DASHBOARD ÖFFNEN</a>
@@ -474,48 +597,153 @@
       <div class="container mx-auto">
         <h2 class="section-title text-3xl">Unsere Plattformen</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div class="card p-6">
-            <div class="card-icon">
+          <!-- MPU Platform Card -->
+          <div class="card card-mpu p-6">
+            <div class="card-icon card-icon-mpu">
               <span class="text-xl">🎮</span>
             </div>
             <h3 class="text-xl font-bold text-center mb-4">MPU Plattform</h3>
-            <p class="text-center mb-6">Bereite dich optimal auf deine MPU vor mit professionellen Tests, Übungen und Simulationen.</p>
+            <p class="text-center mb-6">Kompletter Begleiter für deine MPU-Vorbereitung mit Reaktionstests, Simulatoren und KI-Assistenz.</p>
             <div class="mt-auto text-center">
-              <a href="#" class="btn-secondary" onclick="switchTab('features')">MEHR ERFAHREN</a>
+              <a href="#mpu-platform" class="btn-primary btn-mpu" onclick="scrollToSection('mpu-platform')">MEHR ERFAHREN</a>
             </div>
           </div>
           
-          <div class="card p-6">
-            <div class="card-icon">
+          <!-- Aging Platform Card -->
+          <div class="card card-aging p-6">
+            <div class="card-icon card-icon-aging">
               <span class="text-xl">⏳</span>
             </div>
-            <h3 class="text-xl font-bold text-center mb-4">Alterungsstopp</h3>
-            <p class="text-center mb-6">Verstehe und beeinflusse deinen Alterungsprozess mit wissenschaftlich fundierten Analysen und Tools.</p>
+            <h3 class="text-xl font-bold text-center mb-4">JUNGSINGULÄR</h3>
+            <p class="text-center mb-6">Bewusst gesund und jung bleiben mit KI-gestützter Alterungsforschung und personalisierten Strategien.</p>
             <div class="mt-auto text-center">
-              <a href="#" class="btn-secondary" onclick="switchTab('features')">MEHR ERFAHREN</a>
+              <a href="#aging-platform" class="btn-primary btn-aging" onclick="scrollToSection('aging-platform')">MEHR ERFAHREN</a>
             </div>
           </div>
           
-          <div class="card p-6">
-            <div class="card-icon">
+          <!-- Trading Platform Card -->
+          <div class="card card-trading p-6">
+            <div class="card-icon card-icon-trading">
               <span class="text-xl">📊</span>
             </div>
-            <h3 class="text-xl font-bold text-center mb-4">Trading Tools</h3>
-            <p class="text-center mb-6">Leistungsstarke Volatilitätsanalysen und Trading-Tools für fundierte Entscheidungen.</p>
+            <h3 class="text-xl font-bold text-center mb-4">GROGAB TRADE</h3>
+            <p class="text-center mb-6">Leistungsstarkes DAX Daytrading mit Echtzeit-Charts, fortschrittlichem Ordermanagement und Marktanalysen.</p>
             <div class="mt-auto text-center">
-              <a href="#" class="btn-secondary" onclick="switchTab('features')">MEHR ERFAHREN</a>
+              <a href="#trading-platform" class="btn-primary btn-trading" onclick="scrollToSection('trading-platform')">MEHR ERFAHREN</a>
             </div>
           </div>
           
-          <div class="card p-6">
-            <div class="card-icon">
+          <!-- Simulation Platform Card -->
+          <div class="card card-simulation p-6">
+            <div class="card-icon card-icon-simulation">
               <span class="text-xl">🔮</span>
             </div>
-            <h3 class="text-xl font-bold text-center mb-4">Simulation</h3>
-            <p class="text-center mb-6">Erkunde komplexe Phänomene der Quantenphysik und Schwarze Löcher mit interaktiven Simulationen.</p>
+            <h3 class="text-xl font-bold text-center mb-4">KerrCode</h3>
+            <p class="text-center mb-6">Tauche ein in die Knoten unserer Realität mit Simulationen zu Kerr-Schwarzen Löchern und Quantenphysik.</p>
             <div class="mt-auto text-center">
-              <a href="#" class="btn-secondary" onclick="switchTab('features')">MEHR ERFAHREN</a>
+              <a href="#simulation-platform" class="btn-primary btn-simulation" onclick="scrollToSection('simulation-platform')">MEHR ERFAHREN</a>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- MPU Platform Section -->
+    <section id="mpu-platform" class="section">
+      <div class="container mx-auto">
+        <h2 class="section-title text-3xl">MPU Plattform</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h3 class="text-xl font-bold mb-4">Dein kompletter Begleiter für die MPU-Vorbereitung</h3>
+            <p class="mb-4">Unsere MPU-Plattform bietet alles, was du für eine optimale Vorbereitung auf die Medizinisch-Psychologische Untersuchung benötigst:</p>
+            <ul class="feature-list mb-6">
+              <li>Umfassende Reaktions- und Leistungstests (Figurenvergleich, Farben, Verkehrssituationen)</li>
+              <li>MPU-Simulator mit KI für realistische Gesprächssimulationen</li>
+              <li>Detaillierte Informationen zum MPU-Ablauf und Kosten</li>
+              <li>Promille-Rechner und Alkoholkonsumanalyse</li>
+              <li>Interaktive Fragebögen und Vorbereitungsübungen</li>
+              <li>KI-Assistent für persönliche Beratung und Fragen</li>
+            </ul>
+            <a href="#" class="btn-primary btn-mpu" onclick="openExternalLink('https://zaha175.github.io/MPUPLATFORMULTRA1/')">PLATTFORM TESTEN</a>
+          </div>
+          <div>
+            <img src="https://cdn.gamma.app/fhpleqvbjim2f32/d72faf9cb3c041ceb79590e3ee8db024/original/Screenshot-2024-12-26-161706.jpg" alt="MPU Plattform" class="platform-image">
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Aging Platform Section -->
+    <section id="aging-platform" class="section bg-gray-50 dark:bg-gray-900">
+      <div class="container mx-auto">
+        <h2 class="section-title text-3xl">JUNGSINGULÄR</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <img src="https://cdn.gamma.app/fhpleqvbjim2f32/4c9e5c9e8dad48a7b41f44f6982ffb75/original/Screenshot-2025-01-03-213036.jpg" alt="JUNGSINGULÄR Plattform" class="platform-image">
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Bewusst gesund und jung bleiben</h3>
+            <p class="mb-4">JUNGSINGULÄR kombiniert moderne Wissenschaft und KI, um deine Alterungsprozesse zu optimieren:</p>
+            <ul class="feature-list mb-6">
+              <li>KI-gestützte Alterungsforschung mit personalisierten Empfehlungen</li>
+              <li>Biologischer Altersrechner für präzise Analysen</li>
+              <li>Alterungsstopp-Simulator mit Zukunftsprognosen</li>
+              <li>Gehirntraining und kognitive Optimierung</li>
+              <li>Intervallfasten-Anleitungen und Monitoring</li>
+              <li>Stress-Management und Atemübungen mit biometrischem Feedback</li>
+            </ul>
+            <a href="#" class="btn-primary btn-aging" onclick="openExternalLink('https://zaha175.github.io/ALTERUNGSSTOPPPLATFORMULTRA2/')">PLATTFORM TESTEN</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Trading Platform Section -->
+    <section id="trading-platform" class="section">
+      <div class="container mx-auto">
+        <h2 class="section-title text-3xl">GROGAB TRADE</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h3 class="text-xl font-bold mb-4">DAX Daytrading mit Präzision</h3>
+            <p class="mb-4">GROGAB TRADE bietet fortschrittliche Trading-Tools für informierte Investitionsentscheidungen:</p>
+            <ul class="feature-list mb-6">
+              <li>Echtzeit-Charts für DAX, MDAX und TecDAX mit verschiedenen Zeitintervallen</li>
+              <li>Präzises Order-Management (Market, Limit, Stop)</li>
+              <li>Integriertes Risikomanagement mit Stop-Loss und Take-Profit</li>
+              <li>Performance-Dashboard mit Trading-Statistiken</li>
+              <li>Strategie-Tester für verschiedene Handelsmethoden</li>
+              <li>Live Trade Feed für sofortige Entscheidungen</li>
+            </ul>
+            <p class="text-sm mb-4"><em>Hinweis: GROGAB TRADE ist eine Simulations-Plattform, nicht für echtes Trading vorgesehen.</em></p>
+            <a href="#" class="btn-primary btn-trading" onclick="openExternalLink('https://zaha175.github.io/GROGAB-TRADING/')">PLATTFORM TESTEN</a>
+          </div>
+          <div>
+            <img src="https://i.imgur.com/QXc82K9.png" alt="GROGAB Trading Plattform" class="platform-image">
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Simulation Platform Section -->
+    <section id="simulation-platform" class="section bg-gray-50 dark:bg-gray-900">
+      <div class="container mx-auto">
+        <h2 class="section-title text-3xl">KerrCode</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <img src="https://i.imgur.com/cVNquR7.jpeg" alt="KerrCode Simulation Plattform" class="platform-image">
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Die Knoten unserer Realität</h3>
+            <p class="mb-4">KerrCode bietet faszinierende Simulationen und Theorien zu komplexen physikalischen Phänomenen:</p>
+            <ul class="feature-list mb-6">
+              <li>Interaktive Simulationen von Kerr-Schwarzen Löchern</li>
+              <li>5D-Gateway-Visualisierungen und Energieflussdiagramme</li>
+              <li>Parametrisierbare Quantenphysik-Modelle</li>
+              <li>Explorative Theorien zu Sim-in-Sim-Realitäten</li>
+              <li>Fortschrittliche Visualisierungstools für komplexe Phänomene</li>
+              <li>Kontrollpanel für eigene Simulationsexperimente</li>
+            </ul>
+            <a href="#" class="btn-primary btn-simulation" onclick="openExternalLink('https://zaha175.github.io/PLATFORMCODEULTRA/')">PLATTFORM TESTEN</a>
           </div>
         </div>
       </div>
@@ -524,20 +752,29 @@
     <section class="section">
       <div class="container mx-auto">
         <h2 class="section-title text-3xl">Warum KOMMANDO?</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h3 class="text-xl font-bold mb-4">Alles in einem System</h3>
-            <p class="mb-6">Zugriff auf alle Plattformen über ein einziges Dashboard. Keine separaten Logins, keine Komplikationen.</p>
-            
-            <h3 class="text-xl font-bold mb-4">Professionelle Qualität</h3>
-            <p class="mb-6">Entwickelt von Experten für diverse Anwendungsfelder – von MPU-Vorbereitungen bis zu komplexen Simulationen.</p>
-            
-            <h3 class="text-xl font-bold mb-4">Kontinuierliche Updates</h3>
-            <p>Regelmäßige Erweiterungen und Verbesserungen halten deine Tools stets auf dem neuesten Stand.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="card p-6">
+            <div class="card-icon">
+              <span class="text-xl">🔗</span>
+            </div>
+            <h3 class="text-xl font-bold text-center mb-4">Integriertes Ökosystem</h3>
+            <p class="text-center mb-4">Alle Plattformen sind über ein zentrales Dashboard zugänglich. Nahtlose Navigation zwischen verschiedenen Anwendungen.</p>
           </div>
           
-          <div>
-            <img src="https://i.imgur.com/cVNquR7.jpeg" alt="KOMMANDO Platform" class="rounded-lg shadow-lg w-full">
+          <div class="card p-6">
+            <div class="card-icon">
+              <span class="text-xl">🧠</span>
+            </div>
+            <h3 class="text-xl font-bold text-center mb-4">KI-Assistenz</h3>
+            <p class="text-center mb-4">Jede Plattform verfügt über spezialisierte KI-Assistenten, die personalisierte Beratung und Unterstützung bieten.</p>
+          </div>
+          
+          <div class="card p-6">
+            <div class="card-icon">
+              <span class="text-xl">📱</span>
+            </div>
+            <h3 class="text-xl font-bold text-center mb-4">Multidevice-Zugang</h3>
+            <p class="text-center mb-4">Alle Plattformen sind responsive gestaltet und funktionieren auf Desktop, Tablet und Smartphone ohne Einschränkungen.</p>
           </div>
         </div>
       </div>
@@ -548,23 +785,23 @@
         <h2 class="section-title text-3xl">Kundenstimmen</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="testimonial">
-            <p class="mb-4">"Die MPU-Plattform hat meine Vorbereitung völlig verändert. Die Reaktionstests waren genau das, was ich brauchte, um mich sicher zu fühlen."</p>
+            <p class="mb-4">"Die MPU-Plattform hat mir immens geholfen. Die Reaktionstests und der MPU-Simulator waren exakt das, was ich für meine Vorbereitung brauchte. Der KI-Assistent hat alle meine Fragen beantwortet."</p>
             <div class="flex items-center">
-              <div class="font-bold">Markus P.</div>
+              <div class="font-bold">Markus P., 34</div>
             </div>
           </div>
           
           <div class="testimonial">
-            <p class="mb-4">"Die Alterungsstopp-Plattform bietet faszinierende Einblicke und praktische Ratschläge. Die Analysen sind detailliert und nachvollziehbar."</p>
+            <p class="mb-4">"JUNGSINGULÄR hat meine Sicht auf Alterung komplett verändert. Die Analysen sind wissenschaftlich fundiert und die personalisierten Empfehlungen haben bereits nach wenigen Monaten zu spürbaren Verbesserungen geführt."</p>
             <div class="flex items-center">
-              <div class="font-bold">Sandra K.</div>
+              <div class="font-bold">Sandra K., 52</div>
             </div>
           </div>
           
           <div class="testimonial">
-            <p class="mb-4">"Als Trader schätze ich die Volatilitätsanalysen enorm. Sie haben meine Entscheidungsfindung auf ein neues Level gehoben."</p>
+            <p class="mb-4">"Als Trading-Enthusiast liebe ich GROGAB TRADE. Die Simulation ist beeindruckend realistisch, und ich konnte meine Strategien ohne finanzielles Risiko testen und verfeinern, bevor ich sie im echten Markt einsetze."</p>
             <div class="flex items-center">
-              <div class="font-bold">Thomas M.</div>
+              <div class="font-bold">Thomas M., 41</div>
             </div>
           </div>
         </div>
@@ -588,7 +825,7 @@
     <section class="section">
       <div class="container mx-auto">
         <h2 class="section-title text-3xl">Unsere Preispläne</h2>
-        <p class="text-center mb-12 max-w-3xl mx-auto">Wähle den Plan, der am besten zu deinen Bedürfnissen passt. Alle Pläne bieten Zugang zu unserem Dashboard und unseren Kernfunktionen.</p>
+        <p class="text-center mb-12 max-w-3xl mx-auto">Wähle den Plan, der am besten zu deinen Bedürfnissen passt. Alle Pläne bieten Zugang zu unserem Dashboard und Kernfunktionen der Plattformen.</p>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <!-- Basic Plan -->
@@ -601,10 +838,11 @@
             
             <ul class="feature-list mb-6">
               <li>Zugang zu 1 Plattform deiner Wahl</li>
-              <li>Basic Reaktionstests</li>
               <li>Basis-Dashboard</li>
+              <li>Grundlegende Reaktionstests</li>
+              <li>KI-Assistent mit 20 Anfragen/Monat</li>
               <li class="unavailable">Keine Cross-Plattform-Integration</li>
-              <li class="unavailable">Keine erweiterten Funktionen</li>
+              <li class="unavailable">Keine erweiterten Simulationen</li>
               <li class="unavailable">Kein Premium-Support</li>
             </ul>
             
@@ -624,10 +862,11 @@
             
             <ul class="feature-list mb-6">
               <li>Zugang zu 3 Plattformen deiner Wahl</li>
+              <li>Erweitertes Dashboard mit Personalisierung</li>
               <li>Alle Reaktions- und MPU-Tests</li>
-              <li>Erweitertes Dashboard</li>
+              <li>KI-Assistent mit 50 Anfragen/Monat</li>
               <li>Basis-Cross-Plattform-Integration</li>
-              <li>Einige erweiterte Funktionen</li>
+              <li>Alterungsstopp-Simulator (Basisversion)</li>
               <li class="unavailable">Kein Premium-Support</li>
             </ul>
             
@@ -645,16 +884,106 @@
             <p class="text-center mb-6">Die komplette Lösung für maximale Leistung und volle Integration.</p>
             
             <ul class="feature-list mb-6">
-              <li>Zugang zu ALLEN Plattformen</li>
-              <li>Alle Tests und Simulationen</li>
-              <li>Ultra-Dashboard mit allen Funktionen</li>
+              <li>Uneingeschränkter Zugang zu ALLEN Plattformen</li>
+              <li>Ultra-Dashboard mit vollständiger Anpassung</li>
+              <li>Alle Tests, Simulationen und Tools</li>
+              <li>Unbegrenzte KI-Assistent Anfragen</li>
               <li>Vollständige Cross-Plattform-Integration</li>
-              <li>Alle erweiterten Funktionen</li>
-              <li>Premium-Support</li>
+              <li>KerrCode Simulationen mit erweiterten Parametern</li>
+              <li>Premium-Support mit 24h Reaktionszeit</li>
             </ul>
             
             <div class="mt-auto text-center">
               <a href="#" class="btn-secondary w-full">AUSWÄHLEN</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-16">
+          <h3 class="text-2xl font-bold text-center mb-6">Spezialisierte Pläne</h3>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            <!-- MPU Focus Plan -->
+            <div class="card pricing-card card-mpu p-6 relative">
+              <h3 class="text-xl font-bold text-center mb-4">MPU Focus</h3>
+              <div class="price text-center">
+                39,99€ <span class="price-period">/monat</span>
+              </div>
+              <p class="text-center mb-6">Spezialisiert auf optimale MPU-Vorbereitung.</p>
+              
+              <ul class="feature-list mb-6">
+                <li>Vollständige MPU-Plattform</li>
+                <li>Alle Reaktionstests</li>
+                <li>Umfassender MPU-Simulator</li>
+                <li>KI-Assistent für MPU-Fragen</li>
+                <li>Fortschrittsverfolgung</li>
+              </ul>
+              
+              <div class="mt-auto text-center">
+                <a href="#" class="btn-primary btn-mpu w-full">AUSWÄHLEN</a>
+              </div>
+            </div>
+            
+            <!-- Aging Focus Plan -->
+            <div class="card pricing-card card-aging p-6 relative">
+              <h3 class="text-xl font-bold text-center mb-4">Aging Focus</h3>
+              <div class="price text-center">
+                39,99€ <span class="price-period">/monat</span>
+              </div>
+              <p class="text-center mb-6">Für Alterungsstopp-Enthusiasten.</p>
+              
+              <ul class="feature-list mb-6">
+                <li>Vollständige JUNGSINGULÄR-Plattform</li>
+                <li>Biologischer Altersrechner</li>
+                <li>Personalisierte Empfehlungen</li>
+                <li>Intervallfasten-Tracker</li>
+                <li>KI-Berater für Alterungsfragen</li>
+              </ul>
+              
+              <div class="mt-auto text-center">
+                <a href="#" class="btn-primary btn-aging w-full">AUSWÄHLEN</a>
+              </div>
+            </div>
+            
+            <!-- Trading Focus Plan -->
+            <div class="card pricing-card card-trading p-6 relative">
+              <h3 class="text-xl font-bold text-center mb-4">Trading Focus</h3>
+              <div class="price text-center">
+                39,99€ <span class="price-period">/monat</span>
+              </div>
+              <p class="text-center mb-6">Für Trading-Enthusiasten.</p>
+              
+              <ul class="feature-list mb-6">
+                <li>Vollständige GROGAB-Plattform</li>
+                <li>Erweiterte Chart-Analysen</li>
+                <li>Risikomanagement-Tools</li>
+                <li>Strategie-Backtesting</li>
+                <li>Simuliertes Portfolio</li>
+              </ul>
+              
+              <div class="mt-auto text-center">
+                <a href="#" class="btn-primary btn-trading w-full">AUSWÄHLEN</a>
+              </div>
+            </div>
+            
+            <!-- Simulation Focus Plan -->
+            <div class="card pricing-card card-simulation p-6 relative">
+              <h3 class="text-xl font-bold text-center mb-4">Simulation Focus</h3>
+              <div class="price text-center">
+                39,99€ <span class="price-period">/monat</span>
+              </div>
+              <p class="text-center mb-6">Für Physik- und Simulation-Enthusiasten.</p>
+              
+              <ul class="feature-list mb-6">
+                <li>Vollständige KerrCode-Plattform</li>
+                <li>Erweiterte 5D-Simulationen</li>
+                <li>Kerr-Schwarze-Loch-Modelle</li>
+                <li>Parametrisierbare Quantensimulationen</li>
+                <li>Export der Simulationsergebnisse</li>
+              </ul>
+              
+              <div class="mt-auto text-center">
+                <a href="#" class="btn-primary btn-simulation w-full">AUSWÄHLEN</a>
+              </div>
             </div>
           </div>
         </div>
@@ -693,11 +1022,51 @@
           
           <div class="faq-item">
             <div class="faq-question" onclick="toggleFaq(this)">
-              Gibt es eine Geld-zurück-Garantie?
+              Was umfasst der KI-Assistent?
               <span class="faq-icon">+</span>
             </div>
             <div class="faq-answer px-4">
-              <p>Ja, wir bieten eine 14-tägige Geld-zurück-Garantie. Wenn du mit unserem Service nicht zufrieden bist, erhältst du dein Geld vollständig zurück.</p>
+              <p>Jede Plattform bietet einen spezialisierten KI-Assistenten, der auf die jeweiligen Themen spezialisiert ist. Der MPU-Assistent hilft bei Fragen zur MPU-Vorbereitung, der JUNGSINGULÄR-Assistent berät zu Alterungsthemen, usw. Die Anzahl der monatlichen Anfragen hängt von deinem Tarif ab.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Sind die Plattformen auch mobil nutzbar?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer px-4">
+              <p>Ja, alle unsere Plattformen sind vollständig responsiv und funktionieren auf Desktop, Tablet und Smartphone gleichermaßen gut.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Wie funktioniert die MPU-Simulation?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer px-4">
+              <p>Der MPU-Simulator nutzt künstliche Intelligenz, um realistische MPU-Gespräche zu simulieren. Du erhältst typische Fragen und bekommst Feedback zu deinen Antworten. Dadurch kannst du dich optimal auf die echte MPU vorbereiten.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Werden meine Daten für die Alterungs-Analyse gespeichert?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer px-4">
+              <p>Ja, aber nur mit deiner ausdrücklichen Zustimmung. Alle Daten werden verschlüsselt gespeichert und nur für deine persönlichen Analysen verwendet. Du kannst deine Daten jederzeit löschen lassen.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Ist GROGAB TRADE für echtes Trading geeignet?
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer px-4">
+              <p>GROGAB TRADE ist eine Simulationsplattform und nicht für echtes Trading konzipiert. Sie dient dem Üben und Testen von Strategien ohne finanzielles Risiko. Für echtes Trading empfehlen wir die Nutzung regulierter Broker.</p>
             </div>
           </div>
           
@@ -710,171 +1079,31 @@
               <p>Wir akzeptieren Kreditkarten (Visa, Mastercard, American Express), PayPal und Banküberweisung.</p>
             </div>
           </div>
-          
-          <div class="faq-item">
-            <div class="faq-question" onclick="toggleFaq(this)">
-              Welche Plattformen sind verfügbar?
-              <span class="faq-icon">+</span>
-            </div>
-            <div class="faq-answer px-4">
-              <p>Unsere Hauptplattformen umfassen: MPU-Vorbereitung, Alterungsstopp, Trading-Tools, Simulationen, Westworld und Mutter. Jede Hauptplattform enthält mehrere spezialisierte Anwendungen.</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
   </div>
   
-  <!-- FEATURES TAB -->
+  <!-- FEATURES TAB (nur teilweise implementiert) -->
   <div id="features-content" class="tab-content">
-    <section class="section">
+    <!-- Inhalt würde hier ergänzt -->
+    <section class="section text-center">
       <div class="container mx-auto">
-        <h2 class="section-title text-3xl">Unsere Plattformen im Detail</h2>
-        
-        <div class="mb-16">
-          <h3 class="text-2xl font-bold mb-6">MPU Plattform</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <p class="mb-4">Unsere MPU-Plattform bietet umfassende Werkzeuge für eine optimale Vorbereitung auf die Medizinisch-Psychologische Untersuchung:</p>
-              <ul class="list-disc pl-6 mb-6">
-                <li>Reaktionstests in verschiedenen Schwierigkeitsgraden</li>
-                <li>Figurenvergleichstests für kognitive Fähigkeiten</li>
-                <li>Farbentests zur Wahrnehmungsbeurteilung</li>
-                <li>Verkehrssituationstests für reale Szenarios</li>
-                <li>Mehrfachsituationstests für komplexe Entscheidungsfindung</li>
-                <li>Individuelle Auswertungen und Verbesserungsvorschläge</li>
-                <li>Beratung zu MPU-relevanten Themen</li>
-              </ul>
-              <a href="#" class="btn-primary">JETZT TESTEN</a>
-            </div>
-            <div>
-              <img src="https://cdn.gamma.app/fhpleqvbjim2f32/d72faf9cb3c041ceb79590e3ee8db024/original/Screenshot-2024-12-26-161706.jpg" alt="MPU Plattform" class="rounded-lg shadow-lg w-full">
-            </div>
-          </div>
-        </div>
-        
-        <div class="mb-16">
-          <h3 class="text-2xl font-bold mb-6">Alterungsstopp Plattform</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <img src="https://cdn.gamma.app/fhpleqvbjim2f32/4c9e5c9e8dad48a7b41f44f6982ffb75/original/Screenshot-2025-01-03-213036.jpg" alt="Alterungsstopp Plattform" class="rounded-lg shadow-lg w-full">
-            </div>
-            <div>
-              <p class="mb-4">Unsere Alterungsstopp-Plattform kombiniert wissenschaftliche Erkenntnisse mit praktischen Tools:</p>
-              <ul class="list-disc pl-6 mb-6">
-                <li>Persönliche Alterungsanalyse basierend auf biomedizinischen Markern</li>
-                <li>Maßgeschneiderte Interventionsstrategien</li>
-                <li>Lebensstil-Optimierung durch KI-gestützte Empfehlungen</li>
-                <li>Fortschrittsverfolgung mit detaillierten Statistiken</li>
-                <li>Wissenschaftlich fundierte Informationen zum Alterungsprozess</li>
-                <li>Integration mit Gesundheits-Apps und Wearables</li>
-                <li>Community für Erfahrungsaustausch</li>
-              </ul>
-              <a href="#" class="btn-primary">JETZT TESTEN</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="mb-16">
-          <h3 class="text-2xl font-bold mb-6">Trading Plattform</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <p class="mb-4">Unsere Trading-Plattform bietet leistungsstarke Tools für informierte Investitionsentscheidungen:</p>
-              <ul class="list-disc pl-6 mb-6">
-                <li>Echtzeit-Volatilitätsanalysen für verschiedene Märkte</li>
-                <li>Fortschrittliche Charting-Tools mit technischen Indikatoren</li>
-                <li>KI-gestützte Marktprognosen</li>
-                <li>Risikoanalyse und Portfolio-Optimierung</li>
-                <li>Backtesting für Handelsstrategien</li>
-                <li>Anpassbare Alerts und Benachrichtigungen</li>
-                <li>Integration mit gängigen Brokern</li>
-              </ul>
-              <a href="#" class="btn-primary">JETZT TESTEN</a>
-            </div>
-            <div>
-              <img src="https://i.imgur.com/QXc82K9.png" alt="Trading Plattform" class="rounded-lg shadow-lg w-full">
-            </div>
-          </div>
-        </div>
-        
-        <div>
-          <h3 class="text-2xl font-bold mb-6">Simulation Plattform</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <img src="https://i.imgur.com/cVNquR7.jpeg" alt="Simulation Plattform" class="rounded-lg shadow-lg w-full">
-            </div>
-            <div>
-              <p class="mb-4">Unsere Simulations-Plattform eröffnet faszinierende Einblicke in komplexe wissenschaftliche Phänomene:</p>
-              <ul class="list-disc pl-6 mb-6">
-                <li>Interaktive Visualisierungen von Kerr-Schwarzen Löchern</li>
-                <li>Quantenphysik-Simulationen mit didaktischen Erklärungen</li>
-                <li>3D-Modelle für komplexe physikalische Konzepte</li>
-                <li>Anpassbare Parameter für eigene Experimente</li>
-                <li>Lehrreiche Tutorials zu theoretischen Grundlagen</li>
-                <li>Exportfunktionen für Forschung und Bildung</li>
-                <li>Regelmäßige Updates mit neuen wissenschaftlichen Erkenntnissen</li>
-              </ul>
-              <a href="#" class="btn-primary">JETZT TESTEN</a>
-            </div>
-          </div>
-        </div>
+        <h2 class="section-title text-3xl">Plattform-Features im Detail</h2>
+        <p class="mb-6">Detaillierte Beschreibungen aller Plattform-Features findest du hier bald.</p>
+        <a href="#" class="btn-primary" onclick="switchTab('home')">ZURÜCK ZUR STARTSEITE</a>
       </div>
     </section>
   </div>
   
-  <!-- CONTACT TAB -->
+  <!-- CONTACT TAB (nur teilweise implementiert) -->
   <div id="contact-content" class="tab-content">
-    <section class="section">
-      <div class="container mx-auto max-w-4xl">
-        <h2 class="section-title text-3xl">Kontaktiere uns</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h3 class="text-xl font-bold mb-4">Wir sind für dich da</h3>
-            <p class="mb-6">Hast du Fragen zu unseren Plattformen oder Preisen? Benötigst du Unterstützung? Unser Team steht dir gerne zur Verfügung.</p>
-            
-            <div class="mb-6">
-              <h4 class="font-bold mb-2">E-Mail</h4>
-              <p>info@kommando-platform.com</p>
-            </div>
-            
-            <div class="mb-6">
-              <h4 class="font-bold mb-2">Telefon</h4>
-              <p>+49 123 456789</p>
-            </div>
-            
-            <div>
-              <h4 class="font-bold mb-2">Geschäftszeiten</h4>
-              <p>Montag - Freitag: 9:00 - 17:00 Uhr</p>
-            </div>
-          </div>
-          
-          <div>
-            <form class="space-y-4">
-              <div>
-                <label for="name" class="block mb-1 font-medium">Name</label>
-                <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Dein Name">
-              </div>
-              
-              <div>
-                <label for="email" class="block mb-1 font-medium">E-Mail</label>
-                <input type="email" id="email" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="deine@email.com">
-              </div>
-              
-              <div>
-                <label for="subject" class="block mb-1 font-medium">Betreff</label>
-                <input type="text" id="subject" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Betreff deiner Nachricht">
-              </div>
-              
-              <div>
-                <label for="message" class="block mb-1 font-medium">Nachricht</label>
-                <textarea id="message" rows="5" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Deine Nachricht..."></textarea>
-              </div>
-              
-              <button type="submit" class="btn-primary w-full">NACHRICHT SENDEN</button>
-            </form>
-          </div>
-        </div>
+    <!-- Inhalt würde hier ergänzt -->
+    <section class="section text-center">
+      <div class="container mx-auto">
+        <h2 class="section-title text-3xl">Kontakt</h2>
+        <p class="mb-6">Kontaktformular und Informationen findest du hier bald.</p>
+        <a href="#" class="btn-primary" onclick="switchTab('home')">ZURÜCK ZUR STARTSEITE</a>
       </div>
     </section>
   </div>
@@ -884,18 +1113,17 @@
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <h3 class="text-xl font-bold mb-4">KOMMANDO PLATFORM</h3>
-          <p>Professionelle Tools für MPU-Training, Reaktionstest, Alterungsstopp und Trading – alles in einer integrierten Plattform.</p>
+          <p>Umfassendes digitales Ökosystem mit Spezialplattformen für MPU-Training, Alterungsstopp, Trading und physikalische Simulationen.</p>
         </div>
         
         <div>
           <h3 class="text-lg font-bold mb-4">Plattformen</h3>
           <ul class="space-y-2">
-            <li><a href="#" class="hover:text-blue-300">MPU</a></li>
-            <li><a href="#" class="hover:text-blue-300">Alterungsstopp</a></li>
-            <li><a href="#" class="hover:text-blue-300">Trading</a></li>
-            <li><a href="#" class="hover:text-blue-300">Simulation</a></li>
-            <li><a href="#" class="hover:text-blue-300">Westworld</a></li>
-            <li><a href="#" class="hover:text-blue-300">Mutter</a></li>
+            <li><a href="#" class="hover:text-blue-300" onclick="openExternalLink('https://zaha175.github.io/MPUPLATFORMULTRA1/')">MPU Plattform</a></li>
+            <li><a href="#" class="hover:text-blue-300" onclick="openExternalLink('https://zaha175.github.io/ALTERUNGSSTOPPPLATFORMULTRA2/')">JUNGSINGULÄR</a></li>
+            <li><a href="#" class="hover:text-blue-300" onclick="openExternalLink('https://zaha175.github.io/GROGAB-TRADING/')">GROGAB TRADE</a></li>
+            <li><a href="#" class="hover:text-blue-300" onclick="openExternalLink('https://zaha175.github.io/PLATFORMCODEULTRA/')">KerrCode</a></li>
+            <li><a href="#" class="hover:text-blue-300" onclick="goToDashboard()">Dashboard</a></li>
           </ul>
         </div>
         
@@ -937,7 +1165,7 @@
         dashboard: "DASHBOARD",
         hero: {
           title: "MISSION CONTROL FÜR DEIN DIGITALES LEBEN",
-          subtitle: "Professionelle Tools für MPU-Training, Reaktionstest, Alterungsstopp und Trading – alles in einer integrierten Plattform.",
+          subtitle: "Von MPU-Vorbereitung bis Trading, von Alterungsstopp bis Quantensimulation – entdecke die KOMMANDO-Plattform, dein digitales Ökosystem.",
           cta1: "PREISE ANZEIGEN",
           cta2: "DASHBOARD ÖFFNEN"
         },
@@ -951,7 +1179,7 @@
         dashboard: "DASHBOARD",
         hero: {
           title: "MISSION CONTROL FOR YOUR DIGITAL LIFE",
-          subtitle: "Professional tools for MPU training, reaction tests, aging prevention, and trading – all in one integrated platform.",
+          subtitle: "From MPU preparation to trading, from anti-aging to quantum simulation – discover the KOMMANDO platform, your digital ecosystem.",
           cta1: "VIEW PRICING",
           cta2: "OPEN DASHBOARD"
         },
@@ -965,7 +1193,7 @@
         dashboard: "TABLOU DE BORD",
         hero: {
           title: "CONTROLUL MISIUNII PENTRU VIAȚA TA DIGITALĂ",
-          subtitle: "Instrumente profesionale pentru pregătirea MPU, teste de reacție, prevenirea îmbătrânirii și tranzacționare – totul într-o platformă integrată.",
+          subtitle: "De la pregătirea MPU la tranzacționare, de la oprirea îmbătrânirii la simularea cuantică – descoperă platforma KOMMANDO, ecosistemul tău digital.",
           cta1: "VEZI PREȚURILE",
           cta2: "DESCHIDE TABLOUL DE BORD"
         },
@@ -1008,7 +1236,20 @@
 
     // Zum Dashboard navigieren
     function goToDashboard() {
-      window.location.href = "KOMMANDO2.html";
+      window.open("https://zaha175.github.io/KOMMANDOPLATFORMALTERNATIV/", "_blank");
+    }
+    
+    // Externe Links öffnen
+    function openExternalLink(url) {
+      window.open(url, "_blank");
+    }
+    
+    // Zu einem Abschnitt scrollen
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
     }
 
     // Dark Mode Toggle
