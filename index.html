@@ -193,10 +193,11 @@
       border-radius: 0.5rem;
       overflow: hidden;
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, border-color 0.3s; /* Added border-color */
       height: 100%;
       display: flex;
       flex-direction: column;
+      border: 2px solid transparent; /* Added base border */
     }
 
     body.dark-mode .card {
@@ -228,6 +229,16 @@
     .pricing-card { border: 2px solid transparent; transition: all 0.3s ease; }
     .pricing-card:hover { border-color: var(--primary-color); }
     .pricing-card.popular { border-color: var(--secondary-color); position: relative; }
+    /* NEW: Style for selected plan */
+    .pricing-card.selected-plan {
+        border-color: var(--primary-dark);
+        box-shadow: 0 0 0 3px rgba(93, 92, 222, 0.4);
+    }
+    body.dark-mode .pricing-card.selected-plan {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(93, 92, 222, 0.6);
+    }
+
     .popular-badge {
       position: absolute; top: 0; right: 0;
       background-color: var(--secondary-color); color: var(--header-dark);
@@ -253,7 +264,7 @@
     }
     body.dark-mode .testimonial { background-color: var(--card-dark); }
     .testimonial::before {
-      content: """; position: absolute; top: 0.5rem; left: 1rem;
+      content: '"'; position: absolute; top: 0.5rem; left: 1rem;
       font-size: 5rem; font-family: Georgia, serif; color: var(--primary-color);
       opacity: 0.2; line-height: 1;
     }
@@ -470,21 +481,18 @@
 
   <nav class="tab-nav">
     <button id="home-tab" class="tab-btn active" onclick="switchTab('home')">HOME</button>
-    <button id="pricing-tab" class="tab-btn" onclick="switchTab('pricing')">PREISE & CHECKOUT</button> <!-- Changed Name -->
-    <button id="features-tab" class="tab-btn" onclick="switchTab('features')">FEATURES</button>
+    <button id="pricing-tab" class="tab-btn" onclick="switchTab('pricing')">PREISE</button> <button id="features-tab" class="tab-btn" onclick="switchTab('features')">FEATURES</button>
     <button id="contact-tab" class="tab-btn" onclick="switchTab('contact')">KONTAKT</button>
     <button id="dashboard-tab" class="tab-btn" onclick="goToDashboard()">DASHBOARD</button>
   </nav>
 
-  <!-- HOME TAB -->
   <div id="home-content" class="tab-content active">
     <section class="hero">
       <div class="hero-content">
         <h1>MISSION CONTROL FÜR DEIN DIGITALES LEBEN</h1>
         <p>Von MPU-Vorbereitung bis Trading, von Alterungsstopp bis Quantensimulation – entdecke die KOMMANDO-Plattform, dein digitales Ökosystem.</p>
         <div class="flex justify-center gap-4 flex-wrap">
-          <a href="#" class="btn-primary" onclick="switchTab('pricing')">PREISE & CHECKOUT</a>
-          <a href="#" class="btn-secondary" onclick="goToDashboard()">DASHBOARD ÖFFNEN</a>
+          <a href="#" class="btn-primary" onclick="switchTab('pricing')">PREISE</a> <a href="#" class="btn-secondary" onclick="goToDashboard()">DASHBOARD ÖFFNEN</a>
         </div>
       </div>
     </section>
@@ -493,7 +501,6 @@
       <div class="container mx-auto">
         <h2 class="section-title text-3xl">Unsere Plattformen</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <!-- MPU Platform Card -->
           <div class="card card-mpu p-6">
             <div class="card-icon card-icon-mpu">
               <span class="text-xl">🎮</span>
@@ -505,7 +512,6 @@
             </div>
           </div>
 
-          <!-- Aging Platform Card -->
           <div class="card card-aging p-6">
             <div class="card-icon card-icon-aging">
               <span class="text-xl">⏳</span>
@@ -517,7 +523,6 @@
             </div>
           </div>
 
-          <!-- Trading Platform Card -->
           <div class="card card-trading p-6">
             <div class="card-icon card-icon-trading">
               <span class="text-xl">📊</span>
@@ -529,7 +534,6 @@
             </div>
           </div>
 
-          <!-- Simulation Platform Card -->
           <div class="card card-simulation p-6">
             <div class="card-icon card-icon-simulation">
               <span class="text-xl">🔮</span>
@@ -544,7 +548,6 @@
       </div>
     </section>
 
-    <!-- MPU Platform Section -->
     <section id="mpu-platform" class="section">
       <div class="container mx-auto">
         <h2 class="section-title text-3xl">MPU Plattform</h2>
@@ -560,8 +563,7 @@
               <li>Interaktive Fragebögen und Vorbereitungsübungen</li>
               <li>KI-Assistent für persönliche Beratung und Fragen</li>
             </ul>
-            <a href="#" class="btn-primary btn-mpu" onclick="openExternalLink('https://zaha175.github.io/MPUPLATFORMULTRA1/')">PLATTFORM TESTEN</a>
-          </div>
+            <a href="https://zaha175.github.io/MPUPLATFORMULTRA1/" class="btn-primary btn-mpu" target="_blank" rel="noopener noreferrer">PLATTFORM TESTEN</a> </div>
           <div>
             <img src="https://cdn.gamma.app/fhpleqvbjim2f32/d72faf9cb3c041ceb79590e3ee8db024/original/Screenshot-2024-12-26-161706.jpg" alt="MPU Plattform" class="platform-image">
           </div>
@@ -569,7 +571,6 @@
       </div>
     </section>
 
-    <!-- Aging Platform Section -->
     <section id="aging-platform" class="section bg-gray-50 dark:bg-gray-900">
       <div class="container mx-auto">
         <h2 class="section-title text-3xl">JUNGSINGULÄR</h2>
@@ -588,13 +589,11 @@
               <li>Intervallfasten-Anleitungen und Monitoring</li>
               <li>Stress-Management und Atemübungen mit biometrischem Feedback</li>
             </ul>
-            <a href="#" class="btn-primary btn-aging" onclick="openExternalLink('https://zaha175.github.io/ALTERUNGSSTOPPPLATFORMULTRA2/')">PLATTFORM TESTEN</a>
-          </div>
+            <a href="https://zaha175.github.io/ALTERUNGSSTOPPPLATFORMULTRA2/" class="btn-primary btn-aging" target="_blank" rel="noopener noreferrer">PLATTFORM TESTEN</a> </div>
         </div>
       </div>
     </section>
 
-    <!-- Trading Platform Section -->
     <section id="trading-platform" class="section">
       <div class="container mx-auto">
         <h2 class="section-title text-3xl">GROGAB TRADE</h2>
@@ -611,8 +610,7 @@
               <li>Live Trade Feed für sofortige Entscheidungen</li>
             </ul>
             <p class="text-sm mb-4"><em>Hinweis: GROGAB TRADE ist eine Simulations-Plattform, nicht für echtes Trading vorgesehen.</em></p>
-            <a href="#" class="btn-primary btn-trading" onclick="openExternalLink('https://zaha175.github.io/GROGAB-TRADING/')">PLATTFORM TESTEN</a>
-          </div>
+            <a href="https://zaha175.github.io/GROGAB-TRADING/" class="btn-primary btn-trading" target="_blank" rel="noopener noreferrer">PLATTFORM TESTEN</a> </div>
           <div>
             <img src="https://i.imgur.com/QXc82K9.png" alt="GROGAB Trading Plattform" class="platform-image">
           </div>
@@ -620,7 +618,6 @@
       </div>
     </section>
 
-    <!-- Simulation Platform Section -->
     <section id="simulation-platform" class="section bg-gray-50 dark:bg-gray-900">
       <div class="container mx-auto">
         <h2 class="section-title text-3xl">KerrCode</h2>
@@ -639,8 +636,7 @@
               <li>Fortschrittliche Visualisierungstools für komplexe Phänomene</li>
               <li>Kontrollpanel für eigene Simulationsexperimente</li>
             </ul>
-            <a href="#" class="btn-primary btn-simulation" onclick="openExternalLink('https://zaha175.github.io/PLATFORMCODEULTRA/')">PLATTFORM TESTEN</a>
-          </div>
+            <a href="https://zaha175.github.io/PLATFORMCODEULTRA/" class="btn-primary btn-simulation" target="_blank" rel="noopener noreferrer">PLATTFORM TESTEN</a> </div>
         </div>
       </div>
     </section>
@@ -674,18 +670,26 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="testimonial">
             <p class="mb-4">"Die MPU-Plattform hat mir immens geholfen. Die Reaktionstests und der MPU-Simulator waren exakt das, was ich für meine Vorbereitung brauchte. Der KI-Assistent hat alle meine Fragen beantwortet."</p>
-            <div class="flex items-center"><div class="font-bold">Markus P., 34</div></div>
-          </div>
+            <div class="flex items-center"><div class="font-bold">Markus P., 34, Berlin</div></div> </div>
           <div class="testimonial">
             <p class="mb-4">"JUNGSINGULÄR hat meine Sicht auf Alterung komplett verändert. Die Analysen sind wissenschaftlich fundiert und die personalisierten Empfehlungen haben bereits nach wenigen Monaten zu spürbaren Verbesserungen geführt."</p>
-            <div class="flex items-center"><div class="font-bold">Sandra K., 52</div></div>
-          </div>
+            <div class="flex items-center"><div class="font-bold">Sandra K., 52, München</div></div> </div>
           <div class="testimonial">
             <p class="mb-4">"Als Trading-Enthusiast liebe ich GROGAB TRADE. Die Simulation ist beeindruckend realistisch, und ich konnte meine Strategien ohne finanzielles Risiko testen und verfeinern, bevor ich sie im echten Markt einsetze."</p>
-            <div class="flex items-center"><div class="font-bold">Thomas M., 41</div></div>
-          </div>
+            <div class="flex items-center"><div class="font-bold">Thomas M., 41, Hamburg</div></div> </div>
         </div>
       </div>
+    </section>
+
+    <section id="about-us" class="section">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="section-title text-3xl">Über Uns</h2>
+            <div class="text-center">
+                <p class="mb-4">Die KOMMANDO PLATFORM wurde mit der Vision gegründet, fortschrittliche digitale Werkzeuge für verschiedene Lebensbereiche zugänglich zu machen. Unser Team aus Experten in den Bereichen KI, Softwareentwicklung, Psychologie, Finanzen und Physik arbeitet kontinuierlich daran, innovative Lösungen zu schaffen.</p>
+                <p class="mb-4">Unsere Mission ist es, Ihnen die Kontrolle über wichtige Aspekte Ihres digitalen Lebens zu geben – sei es die Vorbereitung auf die MPU, die Optimierung Ihrer Gesundheit, das Erlernen von Trading-Strategien oder das Erkunden komplexer wissenschaftlicher Konzepte.</p>
+                <p>Wir glauben an die Kraft der Technologie, um das menschliche Potenzial zu erweitern und komplexe Herausforderungen zu meistern.</p>
+                </div>
+        </div>
     </section>
 
     <section class="section bg-blue-900 text-white">
@@ -693,669 +697,600 @@
         <h2 class="text-3xl font-bold mb-6">Bereit für den Start?</h2>
         <p class="text-xl mb-8">Entdecke das volle Potenzial der KOMMANDO-Plattformen</p>
         <div class="flex justify-center gap-4 flex-wrap">
-          <a href="#" class="btn-primary bg-white text-blue-900 hover:bg-gray-200" onclick="switchTab('pricing')">PREISE & CHECKOUT</a>
-          <a href="#" class="btn-secondary border-white text-white hover:bg-white hover:text-blue-900" onclick="goToDashboard()">DASHBOARD ÖFFNEN</a>
+          <a href="#" class="btn-primary bg-white text-blue-900 hover:bg-gray-200" onclick="switchTab('pricing')">PREISE</a> <a href="#" class="btn-secondary border-white text-white hover:bg-white hover:text-blue-900" onclick="goToDashboard()">DASHBOARD ÖFFNEN</a>
         </div>
       </div>
     </section>
   </div>
 
-  <!-- PRICING/CHECKOUT TAB -->
   <div id="pricing-content" class="tab-content">
-      <!-- Start Pricing Section -->
        <section class="section">
-        <div class="container mx-auto">
-            <h2 class="section-title text-3xl">Unsere Preispläne</h2>
-            <p class="text-center mb-12 max-w-3xl mx-auto">Wähle den Plan, der am besten zu deinen Bedürfnissen passt. Alle Pläne bieten Zugang zu unserem Dashboard und Kernfunktionen der Plattformen.</p>
+         <div class="container mx-auto">
+             <h2 class="section-title text-3xl">Unsere Preispläne</h2>
+             <p class="text-center mb-12 max-w-3xl mx-auto">Wähle den Plan, der am besten zu deinen Bedürfnissen passt. Alle Pläne bieten Zugang zu unserem Dashboard und Kernfunktionen der Plattformen.</p>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <!-- Basic Plan -->
-            <div class="card pricing-card p-6 relative">
-                <h3 class="text-xl font-bold text-center mb-4">Basic</h3>
-                <div class="price text-center">
-                29,99€ <span class="price-period">/monat</span>
-                </div>
-                <p class="text-center mb-6">Ideal für Einsteiger, die eine einzelne Plattform intensiv nutzen möchten.</p>
-
-                <ul class="feature-list mb-6">
-                <li>Zugang zu 1 Plattform deiner Wahl</li>
-                <li>Basis-Dashboard</li>
-                <li>Grundlegende Reaktionstests</li>
-                <li>KI-Assistent mit 20 Anfragen/Monat</li>
-                <li class="unavailable">Keine Cross-Plattform-Integration</li>
-                <li class="unavailable">Keine erweiterten Simulationen</li>
-                <li class="unavailable">Kein Premium-Support</li>
-                </ul>
-
-                <div class="mt-auto text-center">
-                    <!-- Updated Button: Scrolls to checkout section -->
-                    <a href="#checkout-section" class="btn-secondary w-full" onclick="selectPlan('Basic', 29.99)">DIESEN PLAN WÄHLEN</a>
-                </div>
-            </div>
-
-            <!-- Pro Plan -->
-            <div class="card pricing-card p-6 relative popular">
-                <div class="popular-badge">BELIEBT</div>
-                <h3 class="text-xl font-bold text-center mb-4">Pro</h3>
-                <div class="price text-center">
-                59,99€ <span class="price-period">/monat</span>
-                </div>
-                <p class="text-center mb-6">Perfekt für aktive Nutzer, die mehrere Plattformen benötigen.</p>
-
-                <ul class="feature-list mb-6">
-                <li>Zugang zu 3 Plattformen deiner Wahl</li>
-                <li>Erweitertes Dashboard mit Personalisierung</li>
-                <li>Alle Reaktions- und MPU-Tests</li>
-                <li>KI-Assistent mit 50 Anfragen/Monat</li>
-                <li>Basis-Cross-Plattform-Integration</li>
-                <li>Alterungsstopp-Simulator (Basisversion)</li>
-                <li class="unavailable">Kein Premium-Support</li>
-                </ul>
-
-                <div class="mt-auto text-center">
-                    <!-- Updated Button: Scrolls to checkout section -->
-                    <a href="#checkout-section" class="btn-primary w-full" onclick="selectPlan('Pro', 59.99)">DIESEN PLAN WÄHLEN</a>
-                </div>
-            </div>
-
-            <!-- Ultra Plan -->
-            <div class="card pricing-card p-6 relative">
-                <h3 class="text-xl font-bold text-center mb-4">Ultra</h3>
-                <div class="price text-center">
-                99,99€ <span class="price-period">/monat</span>
-                </div>
-                <p class="text-center mb-6">Die komplette Lösung für maximale Leistung und volle Integration.</p>
-
-                <ul class="feature-list mb-6">
-                <li>Uneingeschränkter Zugang zu ALLEN Plattformen</li>
-                <li>Ultra-Dashboard mit vollständiger Anpassung</li>
-                <li>Alle Tests, Simulationen und Tools</li>
-                <li>Unbegrenzte KI-Assistent Anfragen</li>
-                <li>Vollständige Cross-Plattform-Integration</li>
-                <li>KerrCode Simulationen mit erweiterten Parametern</li>
-                <li>Premium-Support mit 24h Reaktionszeit</li>
-                </ul>
-
-                <div class="mt-auto text-center">
-                    <!-- Updated Button: Scrolls to checkout section -->
-                     <a href="#checkout-section" class="btn-secondary w-full" onclick="selectPlan('Ultra', 99.99)">DIESEN PLAN WÄHLEN</a>
-                </div>
-            </div>
-            </div>
-
-            <!-- Specialized Plans (optional, keep or remove as needed) -->
-            <div class="mt-16">
-                <h3 class="text-2xl font-bold text-center mb-6">Spezialisierte Pläne</h3>
-                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto"> <!-- Adjusted max-width for 4 columns -->
-                    <!-- MPU Focus Plan -->
-                    <div class="card pricing-card card-mpu p-6 relative">
-                      <h3 class="text-xl font-bold text-center mb-4">MPU Focus</h3>
-                      <div class="price text-center"> 39,99€ <span class="price-period">/monat</span> </div>
-                      <p class="text-center mb-6 text-sm">Spezialisiert auf optimale MPU-Vorbereitung.</p>
-                      <ul class="feature-list mb-6 text-sm">
-                        <li>Vollständige MPU-Plattform</li>
-                        <li>Alle Reaktionstests</li>
-                        <li>Umfassender MPU-Simulator</li>
-                        <li>KI-Assistent für MPU-Fragen</li>
-                        <li>Fortschrittsverfolgung</li>
-                      </ul>
-                      <div class="mt-auto text-center"> <a href="#checkout-section" class="btn-primary btn-mpu w-full text-sm" onclick="selectPlan('MPU Focus', 39.99)">WÄHLEN</a> </div>
-                    </div>
-                    <!-- Aging Focus Plan -->
-                    <div class="card pricing-card card-aging p-6 relative">
-                      <h3 class="text-xl font-bold text-center mb-4">Aging Focus</h3>
-                      <div class="price text-center"> 39,99€ <span class="price-period">/monat</span> </div>
-                      <p class="text-center mb-6 text-sm">Für Alterungsstopp-Enthusiasten.</p>
-                      <ul class="feature-list mb-6 text-sm">
-                        <li>Vollständige JUNGSINGULÄR</li>
-                        <li>Biologischer Altersrechner</li>
-                        <li>Persönl. Empfehlungen</li>
-                        <li>Intervallfasten-Tracker</li>
-                        <li>KI-Berater Alterung</li>
-                      </ul>
-                      <div class="mt-auto text-center"> <a href="#checkout-section" class="btn-primary btn-aging w-full text-sm" onclick="selectPlan('Aging Focus', 39.99)">WÄHLEN</a> </div>
-                    </div>
-                    <!-- Trading Focus Plan -->
-                    <div class="card pricing-card card-trading p-6 relative">
-                      <h3 class="text-xl font-bold text-center mb-4">Trading Focus</h3>
-                      <div class="price text-center"> 39,99€ <span class="price-period">/monat</span> </div>
-                      <p class="text-center mb-6 text-sm">Für Trading-Enthusiasten.</p>
-                      <ul class="feature-list mb-6 text-sm">
-                        <li>Vollständige GROGAB</li>
-                        <li>Erw. Chart-Analysen</li>
-                        <li>Risikomanagement-Tools</li>
-                        <li>Strategie-Backtesting</li>
-                        <li>Simuliertes Portfolio</li>
-                      </ul>
-                      <div class="mt-auto text-center"> <a href="#checkout-section" class="btn-primary btn-trading w-full text-sm" onclick="selectPlan('Trading Focus', 39.99)">WÄHLEN</a> </div>
-                    </div>
-                    <!-- Simulation Focus Plan -->
-                    <div class="card pricing-card card-simulation p-6 relative">
-                      <h3 class="text-xl font-bold text-center mb-4">Simulation Focus</h3>
-                      <div class="price text-center"> 39,99€ <span class="price-period">/monat</span> </div>
-                      <p class="text-center mb-6 text-sm">Für Physik & Simulation.</p>
-                       <ul class="feature-list mb-6 text-sm">
-                        <li>Vollständige KerrCode</li>
-                        <li>Erw. 5D-Simulationen</li>
-                        <li>Kerr-Schwarze-Loch-Modelle</li>
-                        <li>Parametrisierbare Quantensim.</li>
-                        <li>Export der Ergebnisse</li>
-                      </ul>
-                      <div class="mt-auto text-center"> <a href="#checkout-section" class="btn-primary btn-simulation w-full text-sm" onclick="selectPlan('Simulation Focus', 39.99)">WÄHLEN</a> </div>
-                    </div>
-                  </div>
-            </div>
-
-
-            <div class="mt-12 text-center">
-            <p class="mb-4">Brauchst du eine individuelle Lösung?</p>
-            <a href="#" class="btn-secondary" onclick="switchTab('contact')">KONTAKTIERE UNS</a>
-            </div>
-        </div>
-        </section>
-      <!-- End Pricing Section -->
-
-      <!-- Start Pricing FAQs Section -->
-        <section class="section bg-gray-50 dark:bg-gray-900">
-            <div class="container mx-auto max-w-4xl">
-                <h2 class="section-title text-3xl">Häufig gestellte Fragen zu Preisen</h2>
-                <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)"> Wie funktioniert die Abrechnung?<span class="faq-icon">+</span></div>
-                    <div class="faq-answer px-4"><p>Die Abrechnung erfolgt monatlich im Voraus. Du kannst jederzeit kündigen, die Kündigung wird zum Ende des aktuellen Abrechnungsmonats wirksam.</p></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)"> Kann ich Plattformen beim Pro-Plan wechseln?<span class="faq-icon">+</span></div>
-                    <div class="faq-answer px-4"><p>Ja, beim Pro-Plan kannst du einmal pro Abrechnungsmonat deine ausgewählten 3 Plattformen im Dashboard ändern.</p></div>
-                </div>
-                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)"> Gibt es Rabatte für jährliche Zahlung?<span class="faq-icon">+</span></div>
-                    <div class="faq-answer px-4"><p>Ja, bei jährlicher Vorauszahlung erhältst du in der Regel einen Rabatt, der 2 Monatsbeiträgen entspricht. Diese Option kannst du im Checkout auswählen.</p></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)"> Was passiert nach der Kündigung?<span class="faq-icon">+</span></div>
-                    <div class="faq-answer px-4"><p>Nach Wirksamwerden der Kündigung hast du keinen Zugriff mehr auf die kostenpflichtigen Inhalte der Plattformen. Deine Basis-Accountdaten bleiben bestehen, falls du später reaktivieren möchtest, können aber auf Wunsch auch gelöscht werden.</p></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)"> Sind die spezialisierten Focus-Pläne erweiterbar?<span class="faq-icon">+</span></div>
-                    <div class="faq-answer px-4"><p>Die Focus-Pläne bieten vollen Zugriff auf die jeweilige Spezialplattform. Ein Upgrade auf Pro oder Ultra ist jederzeit über das Dashboard möglich, um Zugriff auf weitere Plattformen zu erhalten.</p></div>
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto" id="pricing-cards-container"> <div class="card pricing-card p-6 relative" data-plan="Basic"> <h3 class="text-xl font-bold text-center mb-4">Basic</h3>
+                 <div class="price text-center">
+                 29,99€ <span class="price-period">/monat</span>
                  </div>
-                </div>
-            </div>
-        </section>
-      <!-- End Pricing FAQs Section -->
+                 <p class="text-center mb-6">Ideal für Einsteiger, die eine einzelne Plattform intensiv nutzen möchten.</p>
+
+                 <ul class="feature-list mb-6">
+                 <li>Zugang zu 1 Plattform deiner Wahl</li>
+                 <li>Basis-Dashboard</li>
+                 <li>Grundlegende Reaktionstests</li>
+                 <li>KI-Assistent mit 20 Anfragen/Monat</li>
+                 <li class="unavailable">Keine Cross-Plattform-Integration</li>
+                 <li class="unavailable">Keine erweiterten Simulationen</li>
+                 <li class="unavailable">Kein Premium-Support</li>
+                 </ul>
+
+                 <div class="mt-auto text-center">
+                     <a href="#checkout-section" class="btn-secondary w-full" onclick="selectPlan('Basic', 29.99, this)">DIESEN PLAN WÄHLEN</a>
+                 </div>
+             </div>
+
+             <div class="card pricing-card p-6 relative popular" data-plan="Pro"> <div class="popular-badge">BELIEBT</div>
+                 <h3 class="text-xl font-bold text-center mb-4">Pro</h3>
+                 <div class="price text-center">
+                 59,99€ <span class="price-period">/monat</span>
+                 </div>
+                 <p class="text-center mb-6">Perfekt für aktive Nutzer, die mehrere Plattformen benötigen.</p>
+
+                 <ul class="feature-list mb-6">
+                 <li>Zugang zu 3 Plattformen deiner Wahl</li>
+                 <li>Erweitertes Dashboard mit Personalisierung</li>
+                 <li>Alle Reaktions- und MPU-Tests</li>
+                 <li>KI-Assistent mit 50 Anfragen/Monat</li>
+                 <li>Basis-Cross-Plattform-Integration</li>
+                 <li>Alterungsstopp-Simulator (Basisversion)</li>
+                 <li class="unavailable">Kein Premium-Support</li>
+                 </ul>
+                 <p class="text-sm text-center text-gray-600 dark:text-gray-400 mb-4">Hinweis: Die Auswahl der 3 Plattformen erfolgt nach dem Checkout im Dashboard.</p>
 
 
-      <!-- Start Checkout Content -->
-      <section id="checkout-section" class="section pt-12"> <!-- Added ID and padding-top -->
-        <div class="container mx-auto max-w-6xl">
-          <h2 class="section-title text-3xl">Checkout</h2>
+                 <div class="mt-auto text-center">
+                     <a href="#checkout-section" class="btn-primary w-full" onclick="selectPlan('Pro', 59.99, this)">DIESEN PLAN WÄHLEN</a>
+                 </div>
+             </div>
 
-          <!-- Checkout Steps -->
-          <div class="checkout-steps mb-12">
-            <div class="step completed">
-              <div class="step-circle">1</div>
-              <div class="step-title">Tarifauswahl</div>
-            </div>
-            <div class="step active">
-              <div class="step-circle">2</div>
-              <div class="step-title">Zahlung</div>
-            </div>
-            <div class="step">
-              <div class="step-circle">3</div>
-              <div class="step-title">Bestätigung</div>
-            </div>
-          </div>
+             <div class="card pricing-card p-6 relative" data-plan="Ultra"> <h3 class="text-xl font-bold text-center mb-4">Ultra</h3>
+                 <div class="price text-center">
+                 99,99€ <span class="price-period">/monat</span>
+                 </div>
+                 <p class="text-center mb-6">Die komplette Lösung für maximale Leistung und volle Integration.</p>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Checkout Form -->
-            <div class="col-span-2">
-              <h3 class="text-xl font-bold mb-6">Deine Informationen</h3>
+                 <ul class="feature-list mb-6">
+                 <li>Uneingeschränkter Zugang zu ALLEN Plattformen</li>
+                 <li>Ultra-Dashboard mit vollständiger Anpassung</li>
+                 <li>Alle Tests, Simulationen und Tools</li>
+                 <li>Unbegrenzte KI-Assistent Anfragen</li>
+                 <li>Vollständige Cross-Plattform-Integration</li>
+                 <li>KerrCode Simulationen mit erweiterten Parametern</li>
+                 <li>Premium-Support mit 24h Reaktionszeit</li>
+                 </ul>
 
-              <form id="checkout-form">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div class="form-group">
-                    <label for="first-name" class="form-label">Vorname *</label>
-                    <input type="text" id="first-name" name="first-name" class="form-input" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="last-name" class="form-label">Nachname *</label>
-                    <input type="text" id="last-name" name="last-name" class="form-input" required>
-                  </div>
-                </div>
+                 <div class="mt-auto text-center">
+                     <a href="#checkout-section" class="btn-secondary w-full" onclick="selectPlan('Ultra', 99.99, this)">DIESEN PLAN WÄHLEN</a>
+                 </div>
+             </div>
+             </div>
 
-                <div class="form-group mb-6">
-                  <label for="email" class="form-label">E-Mail *</label>
-                  <input type="email" id="email" name="email" class="form-input" required>
-                </div>
+             <div class="mt-16">
+                 <h3 class="text-2xl font-bold text-center mb-6">Spezialisierte Pläne</h3>
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto"> <div class="card pricing-card card-mpu p-6 relative" data-plan="MPU Focus"> <h3 class="text-xl font-bold text-center mb-4">MPU Focus</h3>
+                       <div class="price text-center"> 39,99€ <span class="price-period">/monat</span> </div>
+                       <p class="text-center mb-6 text-sm">Spezialisiert auf optimale MPU-Vorbereitung.</p>
+                       <ul class="feature-list mb-6 text-sm">
+                         <li>Vollständige MPU-Plattform</li>
+                         <li>Alle Reaktionstests</li>
+                         <li>Umfassender MPU-Simulator</li>
+                         <li>KI-Assistent für MPU-Fragen</li>
+                         <li>Fortschrittsverfolgung</li>
+                       </ul>
+                       <div class="mt-auto text-center"> <a href="#checkout-section" class="btn-primary btn-mpu w-full text-sm" onclick="selectPlan('MPU Focus', 39.99, this)">WÄHLEN</a> </div>
+                     </div>
+                     <div class="card pricing-card card-aging p-6 relative" data-plan="Aging Focus"> <h3 class="text-xl font-bold text-center mb-4">Aging Focus</h3>
+                       <div class="price text-center"> 39,99€ <span class="price-period">/monat</span> </div>
+                       <p class="text-center mb-6 text-sm">Für Alterungsstopp-Enthusiasten.</p>
+                       <ul class="feature-list mb-6 text-sm">
+                         <li>Vollständige JUNGSINGULÄR</li>
+                         <li>Biologischer Altersrechner</li>
+                         <li>Persönl. Empfehlungen</li>
+                         <li>Intervallfasten-Tracker</li>
+                         <li>KI-Berater Alterung</li>
+                       </ul>
+                       <div class="mt-auto text-center"> <a href="#checkout-section" class="btn-primary btn-aging w-full text-sm" onclick="selectPlan('Aging Focus', 39.99, this)">WÄHLEN</a> </div>
+                     </div>
+                     <div class="card pricing-card card-trading p-6 relative" data-plan="Trading Focus"> <h3 class="text-xl font-bold text-center mb-4">Trading Focus</h3>
+                       <div class="price text-center"> 39,99€ <span class="price-period">/monat</span> </div>
+                       <p class="text-center mb-6 text-sm">Für Trading-Enthusiasten.</p>
+                       <ul class="feature-list mb-6 text-sm">
+                         <li>Vollständige GROGAB</li>
+                         <li>Erw. Chart-Analysen</li>
+                         <li>Risikomanagement-Tools</li>
+                         <li>Strategie-Backtesting</li>
+                         <li>Simuliertes Portfolio</li>
+                       </ul>
+                       <div class="mt-auto text-center"> <a href="#checkout-section" class="btn-primary btn-trading w-full text-sm" onclick="selectPlan('Trading Focus', 39.99, this)">WÄHLEN</a> </div>
+                     </div>
+                     <div class="card pricing-card card-simulation p-6 relative" data-plan="Simulation Focus"> <h3 class="text-xl font-bold text-center mb-4">Simulation Focus</h3>
+                       <div class="price text-center"> 39,99€ <span class="price-period">/monat</span> </div>
+                       <p class="text-center mb-6 text-sm">Für Physik & Simulation.</p>
+                        <ul class="feature-list mb-6 text-sm">
+                         <li>Vollständige KerrCode</li>
+                         <li>Erw. 5D-Simulationen</li>
+                         <li>Kerr-Schwarze-Loch-Modelle</li>
+                         <li>Parametrisierbare Quantensim.</li>
+                         <li>Export der Ergebnisse</li>
+                       </ul>
+                       <div class="mt-auto text-center"> <a href="#checkout-section" class="btn-primary btn-simulation w-full text-sm" onclick="selectPlan('Simulation Focus', 39.99, this)">WÄHLEN</a> </div>
+                     </div>
+                   </div>
+             </div>
 
-                <div class="form-group mb-6">
-                  <label for="address" class="form-label">Straße und Hausnummer</label>
-                  <input type="text" id="address" name="address" class="form-input">
-                </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div class="form-group">
-                    <label for="postal-code" class="form-label">PLZ</label>
-                    <input type="text" id="postal-code" name="postal-code" class="form-input">
-                  </div>
-                  <div class="form-group">
-                    <label for="city" class="form-label">Stadt</label>
-                    <input type="text" id="city" name="city" class="form-input">
-                  </div>
-                </div>
+             <div class="mt-12 text-center">
+             <p class="mb-4">Brauchst du eine individuelle Lösung?</p>
+             <a href="#" class="btn-secondary" onclick="switchTab('contact')">KONTAKTIERE UNS</a>
+             </div>
+         </div>
+         </section>
+       <section class="section bg-gray-50 dark:bg-gray-900">
+             <div class="container mx-auto max-w-4xl">
+                 <h2 class="section-title text-3xl">Häufig gestellte Fragen zu Preisen</h2>
+                 <div class="faq-container">
+                 <div class="faq-item">
+                     <div class="faq-question" onclick="toggleFaq(this)"> Wie funktioniert die Abrechnung?<span class="faq-icon">+</span></div>
+                     <div class="faq-answer px-4"><p>Die Abrechnung erfolgt monatlich im Voraus. Du kannst jederzeit kündigen, die Kündigung wird zum Ende des aktuellen Abrechnungsmonats wirksam.</p></div>
+                 </div>
+                 <div class="faq-item">
+                     <div class="faq-question" onclick="toggleFaq(this)"> Kann ich Plattformen beim Pro-Plan wechseln?<span class="faq-icon">+</span></div>
+                     <div class="faq-answer px-4"><p>Ja, beim Pro-Plan kannst du einmal pro Abrechnungsmonat deine ausgewählten 3 Plattformen im Dashboard ändern.</p></div>
+                 </div>
+                  <div class="faq-item">
+                     <div class="faq-question" onclick="toggleFaq(this)"> Gibt es Rabatte für jährliche Zahlung?<span class="faq-icon">+</span></div>
+                     <div class="faq-answer px-4"><p>Ja, bei jährlicher Vorauszahlung erhältst du in der Regel einen Rabatt, der 2 Monatsbeiträgen entspricht. Diese Option kannst du im Checkout auswählen.</p></div>
+                 </div>
+                 <div class="faq-item">
+                     <div class="faq-question" onclick="toggleFaq(this)"> Was passiert nach der Kündigung?<span class="faq-icon">+</span></div>
+                     <div class="faq-answer px-4"><p>Nach Wirksamwerden der Kündigung hast du keinen Zugriff mehr auf die kostenpflichtigen Inhalte der Plattformen. Deine Basis-Accountdaten bleiben bestehen, falls du später reaktivieren möchtest, können aber auf Wunsch auch gelöscht werden.</p></div>
+                 </div>
+                 <div class="faq-item">
+                     <div class="faq-question" onclick="toggleFaq(this)"> Sind die spezialisierten Focus-Pläne erweiterbar?<span class="faq-icon">+</span></div>
+                     <div class="faq-answer px-4"><p>Die Focus-Pläne bieten vollen Zugriff auf die jeweilige Spezialplattform. Ein Upgrade auf Pro oder Ultra ist jederzeit über das Dashboard möglich, um Zugriff auf weitere Plattformen zu erhalten.</p></div>
+                 </div>
+                 </div>
+             </div>
+         </section>
+       <section id="checkout-section" class="section pt-12"> <div class="container mx-auto max-w-6xl">
+           <h2 class="section-title text-3xl">Checkout</h2>
 
-                <div class="form-group mb-6">
-                  <label for="country" class="form-label">Land</label>
-                  <select id="country" name="country" class="form-select">
-                    <option value="DE">Deutschland</option>
-                    <option value="AT">Österreich</option>
-                    <option value="CH">Schweiz</option>
-                    <option value="RO">Rumänien</option>
-                    <option value="other">Anderes Land</option>
-                  </select>
-                </div>
+           <div class="checkout-steps mb-12">
+             <div class="step completed">
+               <div class="step-circle">1</div>
+               <div class="step-title">Tarifauswahl</div>
+             </div>
+             <div class="step active">
+               <div class="step-circle">2</div>
+               <div class="step-title">Zahlung</div>
+             </div>
+             <div class="step">
+               <div class="step-circle">3</div>
+               <div class="step-title">Bestätigung</div>
+             </div>
+           </div>
 
-                <h3 class="text-xl font-bold mb-6">Zahlungsmethode</h3>
+           <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+             <div class="col-span-2">
+               <h3 class="text-xl font-bold mb-6">Deine Informationen</h3>
 
-                <div class="space-y-4 mb-8">
-                  <div class="payment-method selected" onclick="selectPayment(this)">
-                    <div class="payment-logo">💳</div>
-                    <div>
-                      <div class="font-bold">Kreditkarte</div>
-                      <div class="text-sm text-gray-600 dark:text-gray-400">Visa, Mastercard, American Express</div>
-                    </div>
-                  </div>
+               <form id="checkout-form">
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                   <div class="form-group">
+                     <label for="first-name" class="form-label">Vorname *</label>
+                     <input type="text" id="first-name" name="first-name" class="form-input" required>
+                   </div>
+                   <div class="form-group">
+                     <label for="last-name" class="form-label">Nachname *</label>
+                     <input type="text" id="last-name" name="last-name" class="form-input" required>
+                   </div>
+                 </div>
 
-                  <div class="payment-method" onclick="selectPayment(this)">
-                    <div class="payment-logo">
-                      <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" alt="PayPal" style="max-width: 60px;">
-                    </div>
-                    <div>
-                      <div class="font-bold">PayPal</div>
-                      <div class="text-sm text-gray-600 dark:text-gray-400">Sichere Online-Zahlung</div>
-                    </div>
-                  </div>
+                 <div class="form-group mb-6">
+                   <label for="email" class="form-label">E-Mail *</label>
+                   <input type="email" id="email" name="email" class="form-input" required>
+                 </div>
 
-                  <div class="payment-method" onclick="selectPayment(this)">
-                    <div class="payment-logo">🏦</div>
-                    <div>
-                      <div class="font-bold">Banküberweisung</div>
-                      <div class="text-sm text-gray-600 dark:text-gray-400">Zahlung per Überweisung</div>
-                    </div>
-                  </div>
-                </div>
+                 <div class="form-group mb-6">
+                   <label for="address" class="form-label">Straße und Hausnummer</label>
+                   <input type="text" id="address" name="address" class="form-input">
+                 </div>
 
-                <!-- Credit Card Form (displayed when credit card payment is selected) -->
-                <div id="credit-card-form" class="mb-8">
-                  <div class="form-group">
-                    <label for="card-number" class="form-label">Kartennummer *</label>
-                    <input type="text" id="card-number" name="card-number" class="form-input" placeholder="1234 5678 9012 3456" required>
-                  </div>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                   <div class="form-group">
+                     <label for="postal-code" class="form-label">PLZ</label>
+                     <input type="text" id="postal-code" name="postal-code" class="form-input">
+                   </div>
+                   <div class="form-group">
+                     <label for="city" class="form-label">Stadt</label>
+                     <input type="text" id="city" name="city" class="form-input">
+                   </div>
+                 </div>
 
-                  <div class="grid grid-cols-2 gap-4">
-                    <div class="form-group">
-                      <label for="expiry-date" class="form-label">Ablaufdatum *</label>
-                      <input type="text" id="expiry-date" name="expiry-date" class="form-input" placeholder="MM/JJ" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="cvv" class="form-label">CVV *</label>
-                      <input type="text" id="cvv" name="cvv" class="form-input" placeholder="123" required>
-                    </div>
-                  </div>
+                 <div class="form-group mb-6">
+                   <label for="country" class="form-label">Land</label>
+                   <select id="country" name="country" class="form-select">
+                     <option value="DE">Deutschland</option>
+                     <option value="AT">Österreich</option>
+                     <option value="CH">Schweiz</option>
+                     <option value="RO">Rumänien</option>
+                     <option value="other">Anderes Land</option>
+                   </select>
+                 </div>
 
-                  <div class="form-group">
-                    <label for="card-holder" class="form-label">Karteninhaber *</label>
-                    <input type="text" id="card-holder" name="card-holder" class="form-input" placeholder="Max Mustermann" required>
-                  </div>
-                </div>
+                 <h3 class="text-xl font-bold mb-6">Zahlungsmethode</h3>
 
-                <div class="flex items-center mb-8">
-                  <input type="checkbox" id="terms" name="terms" required class="mr-2">
-                  <label for="terms">Ich akzeptiere die <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">Allgemeinen Geschäftsbedingungen</a> und die <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">Datenschutzerklärung</a>. *</label>
-                </div>
+                 <div class="space-y-4 mb-8">
+                   <div class="payment-method selected" onclick="selectPayment(this)">
+                     <div class="payment-logo">💳</div>
+                     <div>
+                       <div class="font-bold">Kreditkarte</div>
+                       <div class="text-sm text-gray-600 dark:text-gray-400">Visa, Mastercard, American Express</div>
+                     </div>
+                   </div>
 
-                <button type="submit" class="btn-primary w-full">JETZT KOSTENPFLICHTIG BESTELLEN</button>
-              </form>
-            </div>
+                   <div class="payment-method" onclick="selectPayment(this)">
+                     <div class="payment-logo">
+                       <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" alt="PayPal" style="max-width: 60px;">
+                     </div>
+                     <div>
+                       <div class="font-bold">PayPal</div>
+                       <div class="text-sm text-gray-600 dark:text-gray-400">Sichere Online-Zahlung</div>
+                     </div>
+                   </div>
 
-            <!-- Order Summary -->
-            <div>
-              <h3 class="text-xl font-bold mb-6">Bestellübersicht</h3>
+                   <div class="payment-method" onclick="selectPayment(this)">
+                     <div class="payment-logo">🏦</div>
+                     <div>
+                       <div class="font-bold">Banküberweisung</div>
+                       <div class="text-sm text-gray-600 dark:text-gray-400">Zahlung per Überweisung</div>
+                     </div>
+                   </div>
+                 </div>
 
-              <div class="checkout-summary">
-                 <!-- HINWEIS: Dieser Inhalt wird jetzt durch JavaScript aktualisiert -->
-                <div class="summary-item">
-                  <div class="font-bold" id="summary-plan-name">KOMMANDO Pro Plan</div>
-                  <div id="summary-plan-price">59,99 €</div>
-                </div>
+                 <div id="credit-card-form" class="mb-8">
+                   <div class="form-group">
+                     <label for="card-number" class="form-label">Kartennummer *</label>
+                     <input type="text" id="card-number" name="card-number" class="form-input" placeholder="1234 5678 9012 3456" required>
+                   </div>
 
-                <div class="summary-item">
-                  <div>Abrechnung</div>
-                  <div>Monatlich</div>
-                </div>
+                   <div class="grid grid-cols-2 gap-4">
+                     <div class="form-group">
+                       <label for="expiry-date" class="form-label">Ablaufdatum *</label>
+                       <input type="text" id="expiry-date" name="expiry-date" class="form-input" placeholder="MM/JJ" required>
+                     </div>
+                     <div class="form-group">
+                       <label for="cvv" class="form-label">CVV *</label>
+                       <input type="text" id="cvv" name="cvv" class="form-input" placeholder="123" required>
+                     </div>
+                   </div>
 
-                 <!-- Optional: Platform selection details for Pro Plan -->
-                 <div class="summary-item" id="summary-platforms" style="display: none;"> <!-- Hide initially -->
-                    <div>Ausgewählte Plattformen</div>
-                    <div>
-                        <div>MPU Plattform</div>
-                        <div>JUNGSINGULÄR</div>
-                        <div>GROGAB TRADE</div>
-                        <!-- This part needs more logic if you want users to actually select platforms -->
-                    </div>
-                </div>
+                   <div class="form-group">
+                     <label for="card-holder" class="form-label">Karteninhaber *</label>
+                     <input type="text" id="card-holder" name="card-holder" class="form-input" placeholder="Max Mustermann" required>
+                   </div>
+                 </div>
 
-                <div class="summary-item">
-                  <div>Zwischensumme</div>
-                  <div id="summary-subtotal">59,99 €</div>
-                </div>
+                 <div class="flex items-center mb-8">
+                   <input type="checkbox" id="terms" name="terms" required class="mr-2">
+                   <label for="terms">Ich akzeptiere die <a href="agb.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">Allgemeinen Geschäftsbedingungen</a> und die <a href="datenschutz.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">Datenschutzerklärung</a>. *</label> </div>
 
-                <div class="summary-item">
-                  <div>MwSt. (19%)</div>
-                  <div id="summary-vat">11,40 €</div>
-                </div>
+                 <button type="submit" class="btn-primary w-full">JETZT KOSTENPFLICHTIG BESTELLEN</button>
+               </form>
+             </div>
 
-                <div class="summary-total flex justify-between">
-                  <div>Gesamtsumme</div>
-                  <div id="summary-total">71,39 €</div>
-                </div>
+             <div>
+               <h3 class="text-xl font-bold mb-6">Bestellübersicht</h3>
 
-                <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">
-                  <p>Die monatliche Gebühr wird ab heute und dann jeden Monat berechnet, bis du kündigst.</p>
-                  <p class="mt-2">Du kannst jederzeit mit einer Frist von 30 Tagen kündigen.</p>
-                </div>
-              </div>
+               <div class="checkout-summary">
+                   <div class="summary-item">
+                   <div class="font-bold" id="summary-plan-name">KOMMANDO Pro Plan</div>
+                   <div id="summary-plan-price">59,99 €</div>
+                 </div>
 
-              <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-900 rounded-lg">
-                <h4 class="font-bold mb-2">Hast du einen Gutscheincode?</h4>
-                <div class="flex">
-                  <input type="text" class="form-input rounded-r-none" placeholder="Code eingeben">
-                  <button class="btn-primary rounded-l-none px-4">EINLÖSEN</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- End Checkout Content -->
-  </div>
+                 <div class="summary-item">
+                   <div>Abrechnung</div>
+                   <div>Monatlich</div>
+                 </div>
 
-  <!-- FEATURES TAB -->
+                   <div class="summary-item" id="summary-platforms" style="display: none;"> <div>Ausgewählte Plattformen</div>
+                     <div class="text-right"> <div class="text-sm text-gray-500 dark:text-gray-400">(Auswahl nach Checkout)</div>
+                         </div>
+                 </div>
+
+                 <div class="summary-item">
+                   <div>Zwischensumme</div>
+                   <div id="summary-subtotal">59,99 €</div>
+                 </div>
+
+                 <div class="summary-item">
+                   <div>MwSt. (19%)</div>
+                   <div id="summary-vat">11,40 €</div>
+                 </div>
+
+                 <div class="summary-total flex justify-between">
+                   <div>Gesamtsumme</div>
+                   <div id="summary-total">71,39 €</div>
+                 </div>
+
+                 <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                   <p>Die monatliche Gebühr wird ab heute und dann jeden Monat berechnet, bis du kündigst.</p>
+                   <p class="mt-2">Du kannst jederzeit mit einer Frist von 30 Tagen kündigen.</p>
+                 </div>
+               </div>
+
+               <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-900 rounded-lg">
+                 <h4 class="font-bold mb-2">Hast du einen Gutscheincode?</h4>
+                 <div class="flex">
+                   <input type="text" class="form-input rounded-r-none" placeholder="Code eingeben">
+                   <button class="btn-primary rounded-l-none px-4">EINLÖSEN</button>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </section>
+       </div>
+
   <div id="features-content" class="tab-content">
-      <!-- Start Features Content -->
-      <section class="section">
-        <div class="container mx-auto">
-          <h2 class="section-title text-3xl">Detaillierter Plattform-Vergleich</h2>
-          <p class="text-center max-w-3xl mx-auto mb-8">Hier findest du einen umfassenden Vergleich aller Funktionen und Merkmale unserer Plattformen, um die beste Entscheidung für deine Bedürfnisse zu treffen.</p>
+       <section class="section">
+         <div class="container mx-auto">
+           <h2 class="section-title text-3xl">Detaillierter Plattform-Vergleich</h2>
+           <p class="text-center max-w-3xl mx-auto mb-8">Hier findest du einen umfassenden Vergleich aller Funktionen und Merkmale unserer Plattformen, um die beste Entscheidung für deine Bedürfnisse zu treffen.</p>
 
-          <!-- Platform Feature Categories -->
-          <div class="flex flex-wrap justify-center gap-4 mb-8">
-            <span class="platform-pill platform-pill-mpu">MPU Plattform</span>
-            <span class="platform-pill platform-pill-aging">JUNGSINGULÄR</span>
-            <span class="platform-pill platform-pill-trading">GROGAB TRADE</span>
-            <span class="platform-pill platform-pill-simulation">KerrCode</span>
-          </div>
+           <div class="flex flex-wrap justify-center gap-4 mb-8">
+             <span class="platform-pill platform-pill-mpu">MPU Plattform</span>
+             <span class="platform-pill platform-pill-aging">JUNGSINGULÄR</span>
+             <span class="platform-pill platform-pill-trading">GROGAB TRADE</span>
+             <span class="platform-pill platform-pill-simulation">KerrCode</span>
+           </div>
 
-          <!-- Feature Comparison Table -->
-          <div class="overflow-x-auto">
-            <table class="comparison-table">
-              <thead>
-                <tr>
-                  <th>Feature</th>
-                  <th>Basic</th>
-                  <th>Pro</th>
-                  <th>Ultra</th>
-                  <th>MPU Focus</th>
-                  <th>Aging Focus</th>
-                  <th>Trading Focus</th>
-                  <th>Simulation Focus</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Dashboard & Integration Features -->
-                <tr class="feature-category"> <td colspan="8">Dashboard & Integration</td> </tr>
-                <tr><td>Plattform-Zugang</td><td>1 Plattform</td><td>3 Plattformen</td><td>Alle Plattformen</td><td>MPU Plattform</td><td>JUNGSINGULÄR</td><td>GROGAB TRADE</td><td>KerrCode</td></tr>
-                <tr><td>Personalisiertes Dashboard</td><td>Basis</td><td>Erweitert</td><td>Ultra</td><td>MPU-fokussiert</td><td>Alterungs-fokussiert</td><td>Trading-fokussiert</td><td>Simulations-fokussiert</td></tr>
-                <tr><td>Cross-Plattform-Integration</td><td><span class="checkbox-red">✗</span></td><td>Basis</td><td>Vollständig</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
-                <tr><td>KI-Assistent</td><td>20 Anfragen/Monat</td><td>50 Anfragen/Monat</td><td>Unbegrenzt</td><td>MPU-spezialisiert</td><td>Alterungs-spezialisiert</td><td>Trading-spezialisiert</td><td>Physik-spezialisiert</td></tr>
-                <tr><td>Mehrsprachen-Support</td><td>DE</td><td>DE, EN</td><td>DE, EN, RO</td><td>DE, EN</td><td>DE, EN</td><td>DE, EN</td><td>DE, EN</td></tr>
+           <div class="overflow-x-auto">
+             <table class="comparison-table">
+               <thead>
+                 <tr>
+                   <th>Feature</th>
+                   <th>Basic</th>
+                   <th>Pro</th>
+                   <th>Ultra</th>
+                   <th>MPU Focus</th>
+                   <th>Aging Focus</th>
+                   <th>Trading Focus</th>
+                   <th>Simulation Focus</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr class="feature-category"> <td colspan="8">Dashboard & Integration</td> </tr>
+                 <tr><td>Plattform-Zugang</td><td>1 Plattform</td><td>3 Plattformen</td><td>Alle Plattformen</td><td>MPU Plattform</td><td>JUNGSINGULÄR</td><td>GROGAB TRADE</td><td>KerrCode</td></tr>
+                 <tr><td>Personalisiertes Dashboard</td><td>Basis</td><td>Erweitert</td><td>Ultra</td><td>MPU-fokussiert</td><td>Alterungs-fokussiert</td><td>Trading-fokussiert</td><td>Simulations-fokussiert</td></tr>
+                 <tr><td>Cross-Plattform-Integration</td><td><span class="checkbox-red">✗</span></td><td>Basis</td><td>Vollständig</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr><td>KI-Assistent</td><td>20 Anfragen/Monat</td><td>50 Anfragen/Monat</td><td>Unbegrenzt</td><td>MPU-spezialisiert</td><td>Alterungs-spezialisiert</td><td>Trading-spezialisiert</td><td>Physik-spezialisiert</td></tr>
+                 <tr><td>Mehrsprachen-Support</td><td>DE</td><td>DE, EN</td><td>DE, EN, RO</td><td>DE, EN</td><td>DE, EN</td><td>DE, EN</td><td>DE, EN</td></tr>
 
-                <!-- MPU Platform Features -->
-                <tr class="feature-category"><td colspan="8">MPU Plattform Features</td></tr>
-                <tr><td>Reaktionstests</td><td>Basis</td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
-                <tr><td>Figurenvergleichstests</td><td>Basis</td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
-                <tr><td>MPU-Simulator</td><td><span class="checkbox-red">✗</span></td><td>Basis</td><td>Erweitert</td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
-                <tr><td>Promille-Rechner</td><td>Basis</td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
-                <tr><td>Persönlicher Fortschritt</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr class="feature-category"><td colspan="8">MPU Plattform Features</td></tr>
+                 <tr><td>Reaktionstests</td><td>Basis</td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr><td>Figurenvergleichstests</td><td>Basis</td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr><td>MPU-Simulator</td><td><span class="checkbox-red">✗</span></td><td>Basis</td><td>Erweitert</td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr><td>Promille-Rechner</td><td>Basis</td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr><td>Persönlicher Fortschritt</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
 
-                <!-- JUNGSINGULÄR Features -->
-                <tr class="feature-category"><td colspan="8">JUNGSINGULÄR Features</td></tr>
-                <tr><td>Biologisches Alter-Rechner</td><td>Basis</td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
-                <tr><td>Alterungs-Simulator</td><td><span class="checkbox-red">✗</span></td><td>Basis</td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
-                <tr><td>Personalisierte Empfehlungen</td><td><span class="checkbox-red">✗</span></td><td>Basis</td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
-                <tr><td>Intervallfasten-Tracker</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
-                <tr><td>Fortschrittsbericht</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr class="feature-category"><td colspan="8">JUNGSINGULÄR Features</td></tr>
+                 <tr><td>Biologisches Alter-Rechner</td><td>Basis</td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr><td>Alterungs-Simulator</td><td><span class="checkbox-red">✗</span></td><td>Basis</td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr><td>Personalisierte Empfehlungen</td><td><span class="checkbox-red">✗</span></td><td>Basis</td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr><td>Intervallfasten-Tracker</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr><td>Fortschrittsbericht</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td></tr>
 
-                <!-- GROGAB TRADE Features -->
-                <tr class="feature-category"><td colspan="8">GROGAB TRADE Features</td></tr>
-                <tr><td>Echtzeit-Charts</td><td>Basis</td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td></tr>
-                <tr><td>Ordermanagement</td><td>Basis</td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td></tr>
-                <tr><td>Risikomanagement-Tools</td><td><span class="checkbox-red">✗</span></td><td>Basis</td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td></tr>
-                <tr><td>Strategie-Backtesting</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td></tr>
-                <tr><td>Performance-Dashboard</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr class="feature-category"><td colspan="8">GROGAB TRADE Features</td></tr>
+                 <tr><td>Echtzeit-Charts</td><td>Basis</td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr><td>Ordermanagement</td><td>Basis</td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr><td>Risikomanagement-Tools</td><td><span class="checkbox-red">✗</span></td><td>Basis</td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr><td>Strategie-Backtesting</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td></tr>
+                 <tr><td>Performance-Dashboard</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td></tr>
 
-                <!-- KerrCode Features -->
-                <tr class="feature-category"><td colspan="8">KerrCode Features</td></tr>
-                <tr><td>Kerr-Schwarze-Loch-Simulationen</td><td>Basis</td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td></tr>
-                <tr><td>5D-Gateway-Visualisierungen</td><td><span class="checkbox-red">✗</span></td><td>Basis</td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td></tr>
-                <tr><td>Parametrisierbare Modelle</td><td><span class="checkbox-red">✗</span></td><td>Basis</td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td></tr>
-                <tr><td>Simulationsexperimente</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td></tr>
-                <tr><td>Export der Simulationsergebnisse</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td></tr>
+                 <tr class="feature-category"><td colspan="8">KerrCode Features</td></tr>
+                 <tr><td>Kerr-Schwarze-Loch-Simulationen</td><td>Basis</td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td></tr>
+                 <tr><td>5D-Gateway-Visualisierungen</td><td><span class="checkbox-red">✗</span></td><td>Basis</td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td></tr>
+                 <tr><td>Parametrisierbare Modelle</td><td><span class="checkbox-red">✗</span></td><td>Basis</td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td></tr>
+                 <tr><td>Simulationsexperimente</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td>Erweitert</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td>Erweitert</td></tr>
+                 <tr><td>Export der Simulationsergebnisse</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td></tr>
 
-                <!-- Support Features -->
-                <tr class="feature-category"><td colspan="8">Support & Extras</td></tr>
-                <tr><td>Support-Reaktionszeit</td><td>48h</td><td>36h</td><td>24h</td><td>36h</td><td>36h</td><td>36h</td><td>36h</td></tr>
-                <tr><td>Onboarding-Hilfe</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td></tr>
-                <tr><td>Plattform-Wechsel</td><td>1x/Monat</td><td>1x/Monat</td><td>Unbegrenzt</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
-                <tr><td>Daten-Export</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td></tr>
-              </tbody>
-            </table>
-          </div>
+                 <tr class="feature-category"><td colspan="8">Support & Extras</td></tr>
+                 <tr><td>Support-Reaktionszeit</td><td>48h</td><td>36h</td><td>24h</td><td>36h</td><td>36h</td><td>36h</td><td>36h</td></tr>
+                 <tr><td>Onboarding-Hilfe</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td></tr>
+                 <tr><td>Plattform-Wechsel (Pro)</td><td>N/A</td><td>1x/Monat</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td><td>N/A</td></tr> <tr><td>Daten-Export</td><td><span class="checkbox-red">✗</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td><td><span class="checkbox-green">✓</span></td></tr>
+               </tbody>
+             </table>
+           </div>
 
-          <div class="text-center mt-8">
-            <a href="#" class="btn-primary" onclick="switchTab('pricing')">ZU DEN PREISPLÄNEN & CHECKOUT</a>
-          </div>
-        </div>
-      </section>
+           <div class="text-center mt-8">
+             <a href="#" class="btn-primary" onclick="switchTab('pricing')">ZU DEN PREISPLÄNEN</a> </div>
+         </div>
+       </section>
 
-      <section class="section bg-gray-50 dark:bg-gray-900">
-        <div class="container mx-auto">
-          <h2 class="section-title text-3xl">Hauptmerkmale unserer Plattformen</h2>
+       <section class="section bg-gray-50 dark:bg-gray-900">
+         <div class="container mx-auto">
+           <h2 class="section-title text-3xl">Hauptmerkmale unserer Plattformen</h2>
 
-          <!-- Feature Grid -->
-          <div class="feature-grid">
-            <!-- MPU -->
-            <div class="feature-item"><div class="feature-icon" style="color: var(--mpu-color);">🎮</div><h3 class="feature-title">Umfassende Reaktionstests</h3><p>Die MPU-Plattform bietet verschiedene Arten von Reaktionstests, die speziell für die MPU-Vorbereitung entwickelt wurden.</p></div>
-            <div class="feature-item"><div class="feature-icon" style="color: var(--mpu-color);">💬</div><h3 class="feature-title">MPU-Simulator mit KI</h3><p>Bereite dich optimal auf das MPU-Gespräch vor mit unserem KI-gestützten Simulator.</p></div>
-            <div class="feature-item"><div class="feature-icon" style="color: var(--mpu-color);">📋</div><h3 class="feature-title">MPU-Checkliste</h3><p>Behalte den Überblick über deine MPU-Vorbereitung mit unserer umfassenden Checkliste.</p></div>
-            <!-- JUNGSINGULÄR -->
-            <div class="feature-item"><div class="feature-icon" style="color: var(--aging-color);">⏳</div><h3 class="feature-title">Biologisches Alter-Rechner</h3><p>Erfahre, wie alt dein Körper wirklich ist mit unserem fortschrittlichen biologischen Alter-Rechner.</p></div>
-            <div class="feature-item"><div class="feature-icon" style="color: var(--aging-color);">🧠</div><h3 class="feature-title">KI-gestützte Alterungsforschung</h3><p>Zugang zu den neuesten Erkenntnissen im Bereich der Alterungsforschung, verständlich aufbereitet.</p></div>
-            <div class="feature-item"><div class="feature-icon" style="color: var(--aging-color);">🍽️</div><h3 class="feature-title">Intervallfasten-Tracker</h3><p>Verfolge deine Fastenperioden und erhalte personalisierte Empfehlungen.</p></div>
-            <!-- GROGAB TRADE -->
-            <div class="feature-item"><div class="feature-icon" style="color: var(--trading-color);">📊</div><h3 class="feature-title">Echtzeitdiagramme</h3><p>Verfolge den DAX und weitere Indizes in Echtzeit mit anpassbaren Zeitintervallen.</p></div>
-            <div class="feature-item"><div class="feature-icon" style="color: var(--trading-color);">💹</div><h3 class="feature-title">Fortschrittliches Ordermanagement</h3><p>Nutze verschiedene Ordertypen mit integrierten Risikomanagement-Tools für simulierte Trades.</p></div>
-            <div class="feature-item"><div class="feature-icon" style="color: var(--trading-color);">🧪</div><h3 class="feature-title">Strategie-Tester</h3><p>Teste verschiedene Trading-Strategien ohne finanzielles Risiko.</p></div>
-            <!-- KerrCode -->
-            <div class="feature-item"><div class="feature-icon" style="color: var(--simulation-color);">🌌</div><h3 class="feature-title">Kerr-Schwarze-Loch-Simulationen</h3><p>Erkunde die faszinierende Physik rotierender schwarzer Löcher mit interaktiven Visualisierungen.</p></div>
-            <div class="feature-item"><div class="feature-icon" style="color: var(--simulation-color);">🔄</div><h3 class="feature-title">5D-Gateway-Visualisierungen</h3><p>Tauche ein in hypothetische multidimensionale Aspekte von ringförmigen Singularitäten.</p></div>
-            <div class="feature-item"><div class="feature-icon" style="color: var(--simulation-color);">🔬</div><h3 class="feature-title">Eigene Simulationsexperimente</h3><p>Erstelle und führe deine eigenen Experimente durch mit dem KerrCode-Kontrollpanel.</p></div>
-          </div>
-        </div>
-      </section>
+           <div class="feature-grid">
+             <div class="feature-item"><div class="feature-icon" style="color: var(--mpu-color);">🎮</div><h3 class="feature-title">Umfassende Reaktionstests</h3><p>Die MPU-Plattform bietet verschiedene Arten von Reaktionstests, die speziell für die MPU-Vorbereitung entwickelt wurden.</p></div>
+             <div class="feature-item"><div class="feature-icon" style="color: var(--mpu-color);">💬</div><h3 class="feature-title">MPU-Simulator mit KI</h3><p>Bereite dich optimal auf das MPU-Gespräch vor mit unserem KI-gestützten Simulator.</p></div>
+             <div class="feature-item"><div class="feature-icon" style="color: var(--mpu-color);">📋</div><h3 class="feature-title">MPU-Checkliste</h3><p>Behalte den Überblick über deine MPU-Vorbereitung mit unserer umfassenden Checkliste.</p></div>
+             <div class="feature-item"><div class="feature-icon" style="color: var(--aging-color);">⏳</div><h3 class="feature-title">Biologisches Alter-Rechner</h3><p>Erfahre, wie alt dein Körper wirklich ist mit unserem fortschrittlichen biologischen Alter-Rechner.</p></div>
+             <div class="feature-item"><div class="feature-icon" style="color: var(--aging-color);">🧠</div><h3 class="feature-title">KI-gestützte Alterungsforschung</h3><p>Zugang zu den neuesten Erkenntnissen im Bereich der Alterungsforschung, verständlich aufbereitet.</p></div>
+             <div class="feature-item"><div class="feature-icon" style="color: var(--aging-color);">🍽️</div><h3 class="feature-title">Intervallfasten-Tracker</h3><p>Verfolge deine Fastenperioden und erhalte personalisierte Empfehlungen.</p></div>
+             <div class="feature-item"><div class="feature-icon" style="color: var(--trading-color);">📊</div><h3 class="feature-title">Echtzeitdiagramme</h3><p>Verfolge den DAX und weitere Indizes in Echtzeit mit anpassbaren Zeitintervallen.</p></div>
+             <div class="feature-item"><div class="feature-icon" style="color: var(--trading-color);">💹</div><h3 class="feature-title">Fortschrittliches Ordermanagement</h3><p>Nutze verschiedene Ordertypen mit integrierten Risikomanagement-Tools für simulierte Trades.</p></div>
+             <div class="feature-item"><div class="feature-icon" style="color: var(--trading-color);">🧪</div><h3 class="feature-title">Strategie-Tester</h3><p>Teste verschiedene Trading-Strategien ohne finanzielles Risiko.</p></div>
+             <div class="feature-item"><div class="feature-icon" style="color: var(--simulation-color);">🌌</div><h3 class="feature-title">Kerr-Schwarze-Loch-Simulationen</h3><p>Erkunde die faszinierende Physik rotierender schwarzer Löcher mit interaktiven Visualisierungen.</p></div>
+             <div class="feature-item"><div class="feature-icon" style="color: var(--simulation-color);">🔄</div><h3 class="feature-title">5D-Gateway-Visualisierungen</h3><p>Tauche ein in hypothetische multidimensionale Aspekte von ringförmigen Singularitäten.</p></div>
+             <div class="feature-item"><div class="feature-icon" style="color: var(--simulation-color);">🔬</div><h3 class="feature-title">Eigene Simulationsexperimente</h3><p>Erstelle und führe deine eigenen Experimente durch mit dem KerrCode-Kontrollpanel.</p></div>
+           </div>
+         </div>
+       </section>
 
-      <section class="section">
-        <div class="container mx-auto max-w-4xl">
-          <h2 class="section-title text-3xl">Systemanforderungen</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="card p-6">
-              <h3 class="text-xl font-bold mb-4">Computer/Laptop</h3>
-              <ul class="space-y-2">
-                <li><strong>Betriebssystem:</strong> Windows 10/11, macOS 10.14+, Linux (Ubuntu 18.04+)</li>
-                <li><strong>Browser:</strong> Chrome 88+, Firefox 85+, Safari 14+, Edge 88+</li>
-                <li><strong>Prozessor:</strong> Dual-Core 2 GHz oder besser</li>
-                <li><strong>RAM:</strong> 4 GB oder mehr</li>
-                <li><strong>Internet:</strong> Breitbandverbindung (5+ Mbps)</li>
-                <li><strong>Bildschirm:</strong> Mindestens 1280x768 Auflösung</li>
-              </ul>
-            </div>
-            <div class="card p-6">
-              <h3 class="text-xl font-bold mb-4">Mobile Geräte</h3>
-              <ul class="space-y-2">
-                <li><strong>Betriebssystem:</strong> iOS 13+ oder Android 8.0+</li>
-                <li><strong>Browser:</strong> Mobile Chrome, Safari, Firefox</li>
-                <li><strong>Bildschirm:</strong> Mindestens 320px Breite</li>
-                <li><strong>Internet:</strong> 4G/LTE oder WLAN-Verbindung</li>
-              </ul>
-              <p class="mt-4"><em>Hinweis: Für optimale Erfahrung mit KerrCode und einigen fortgeschrittenen Simulationen wird ein Desktop/Laptop empfohlen.</em></p>
-            </div>
-          </div>
-        </div>
-      </section>
+       <section class="section">
+         <div class="container mx-auto max-w-4xl">
+           <h2 class="section-title text-3xl">Systemanforderungen</h2>
+           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+             <div class="card p-6">
+               <h3 class="text-xl font-bold mb-4">Computer/Laptop</h3>
+               <ul class="space-y-2">
+                 <li><strong>Betriebssystem:</strong> Windows 10/11, macOS 10.14+, Linux (Ubuntu 18.04+)</li>
+                 <li><strong>Browser:</strong> Chrome 88+, Firefox 85+, Safari 14+, Edge 88+</li>
+                 <li><strong>Prozessor:</strong> Dual-Core 2 GHz oder besser</li>
+                 <li><strong>RAM:</strong> 4 GB oder mehr</li>
+                 <li><strong>Internet:</strong> Breitbandverbindung (5+ Mbps)</li>
+                 <li><strong>Bildschirm:</strong> Mindestens 1280x768 Auflösung</li>
+               </ul>
+             </div>
+             <div class="card p-6">
+               <h3 class="text-xl font-bold mb-4">Mobile Geräte</h3>
+               <ul class="space-y-2">
+                 <li><strong>Betriebssystem:</strong> iOS 13+ oder Android 8.0+</li>
+                 <li><strong>Browser:</strong> Mobile Chrome, Safari, Firefox</li>
+                 <li><strong>Bildschirm:</strong> Mindestens 320px Breite</li>
+                 <li><strong>Internet:</strong> 4G/LTE oder WLAN-Verbindung</li>
+               </ul>
+               <p class="mt-4"><em>Hinweis: Für optimale Erfahrung mit KerrCode und einigen fortgeschrittenen Simulationen wird ein Desktop/Laptop empfohlen.</em></p>
+             </div>
+           </div>
+         </div>
+       </section>
 
-      <section class="section bg-blue-900 text-white">
-        <div class="container mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-6">Bereit für den Start?</h2>
-          <p class="text-xl mb-8">Wähle deinen Tarif und beginne deine Reise mit der KOMMANDO-Plattform</p>
-          <div class="flex justify-center gap-4 flex-wrap">
-            <a href="#" class="btn-primary bg-white text-blue-900 hover:bg-gray-200" onclick="switchTab('pricing')">PREISE & CHECKOUT</a>
-            <a href="#" class="btn-secondary border-white text-white hover:bg-white hover:text-blue-900" onclick="goToDashboard()">DASHBOARD ÖFFNEN</a>
-          </div>
-        </div>
-      </section>
-      <!-- End Features Content -->
-  </div>
+       <section class="section bg-blue-900 text-white">
+         <div class="container mx-auto text-center">
+           <h2 class="text-3xl font-bold mb-6">Bereit für den Start?</h2>
+           <p class="text-xl mb-8">Wähle deinen Tarif und beginne deine Reise mit der KOMMANDO-Plattform</p>
+           <div class="flex justify-center gap-4 flex-wrap">
+             <a href="#" class="btn-primary bg-white text-blue-900 hover:bg-gray-200" onclick="switchTab('pricing')">PREISE</a> <a href="#" class="btn-secondary border-white text-white hover:bg-white hover:text-blue-900" onclick="goToDashboard()">DASHBOARD ÖFFNEN</a>
+           </div>
+         </div>
+       </section>
+       </div>
 
-  <!-- CONTACT TAB -->
   <div id="contact-content" class="tab-content">
-      <!-- Start Contact Content -->
-      <section class="section">
-        <div class="container mx-auto">
-          <h2 class="section-title text-3xl">Kontaktiere uns</h2>
-          <p class="text-center max-w-3xl mx-auto mb-12">Hast du Fragen zu unseren Plattformen oder benötigst du Unterstützung? Unser Team steht dir gerne zur Verfügung.</p>
+       <section class="section">
+         <div class="container mx-auto">
+           <h2 class="section-title text-3xl">Kontaktiere uns</h2>
+           <p class="text-center max-w-3xl mx-auto mb-12">Hast du Fragen zu unseren Plattformen oder benötigst du Unterstützung? Unser Team steht dir gerne zur Verfügung.</p>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <!-- Contact Form -->
-            <div>
-              <h3 class="text-2xl font-bold mb-6">Sende uns eine Nachricht</h3>
-              <form id="contact-form" class="space-y-6">
-                <div class="form-group">
-                  <label for="contact-name" class="form-label">Name *</label>
-                  <input type="text" id="contact-name" name="name" class="form-input" required>
-                </div>
-                <div class="form-group">
-                  <label for="contact-email" class="form-label">E-Mail *</label>
-                  <input type="email" id="contact-email" name="email" class="form-input" required>
-                </div>
-                <div class="form-group">
-                  <label for="contact-phone" class="form-label">Telefon</label>
-                  <input type="tel" id="contact-phone" name="phone" class="form-input">
-                </div>
-                <div class="form-group">
-                  <label for="contact-subject" class="form-label">Betreff *</label>
-                  <select id="contact-subject" name="subject" class="form-select" required>
-                    <option value="">Bitte wählen...</option>
-                    <option value="allgemein">Allgemeine Anfrage</option>
-                    <option value="mpu">MPU Plattform</option>
-                    <option value="aging">JUNGSINGULÄR</option>
-                    <option value="trading">GROGAB TRADE</option>
-                    <option value="simulation">KerrCode</option>
-                    <option value="support">Technischer Support</option>
-                    <option value="billing">Abrechnung & Zahlung</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="contact-message" class="form-label">Nachricht *</label>
-                  <textarea id="contact-message" name="message" class="form-textarea" required></textarea>
-                </div>
-                <div class="flex items-center">
-                  <input type="checkbox" id="contact-privacy" name="privacy" required class="mr-2">
-                  <label for="contact-privacy">Ich habe die <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">Datenschutzerklärung</a> gelesen und stimme zu. *</label>
-                </div>
-                <button type="submit" class="btn-primary w-full">NACHRICHT SENDEN</button>
-              </form>
-            </div>
+           <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+             <div>
+               <h3 class="text-2xl font-bold mb-6">Sende uns eine Nachricht</h3>
+               <form id="contact-form" class="space-y-6">
+                 <div class="form-group">
+                   <label for="contact-name" class="form-label">Name *</label>
+                   <input type="text" id="contact-name" name="name" class="form-input" required>
+                 </div>
+                 <div class="form-group">
+                   <label for="contact-email" class="form-label">E-Mail *</label>
+                   <input type="email" id="contact-email" name="email" class="form-input" required>
+                 </div>
+                 <div class="form-group">
+                   <label for="contact-phone" class="form-label">Telefon</label>
+                   <input type="tel" id="contact-phone" name="phone" class="form-input">
+                 </div>
+                 <div class="form-group">
+                   <label for="contact-subject" class="form-label">Betreff *</label>
+                   <select id="contact-subject" name="subject" class="form-select" required>
+                     <option value="">Bitte wählen...</option>
+                     <option value="allgemein">Allgemeine Anfrage</option>
+                     <option value="mpu">MPU Plattform</option>
+                     <option value="aging">JUNGSINGULÄR</option>
+                     <option value="trading">GROGAB TRADE</option>
+                     <option value="simulation">KerrCode</option>
+                     <option value="support">Technischer Support</option>
+                     <option value="billing">Abrechnung & Zahlung</option>
+                   </select>
+                 </div>
+                 <div class="form-group">
+                   <label for="contact-message" class="form-label">Nachricht *</label>
+                   <textarea id="contact-message" name="message" class="form-textarea" required></textarea>
+                 </div>
+                 <div class="flex items-center">
+                   <input type="checkbox" id="contact-privacy" name="privacy" required class="mr-2">
+                   <label for="contact-privacy">Ich habe die <a href="datenschutz.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">Datenschutzerklärung</a> gelesen und stimme zu. *</label> </div>
+                 <button type="submit" class="btn-primary w-full">NACHRICHT SENDEN</button>
+               </form>
+             </div>
 
-            <!-- Contact Information -->
-            <div>
-              <h3 class="text-2xl font-bold mb-6">Kontaktinformationen</h3>
-              <div class="contact-card">
-                <div class="contact-info-item"> <div class="contact-info-icon">📧</div> <div class="contact-info-content"> <div class="contact-info-title">E-Mail</div> <a href="mailto:info@kommando-platform.com" class="text-blue-600 dark:text-blue-400 hover:underline">info@kommando-platform.com</a> </div> </div>
-                <div class="contact-info-item"> <div class="contact-info-icon">📞</div> <div class="contact-info-content"> <div class="contact-info-title">Telefon</div> <a href="tel:+4912345678" class="text-blue-600 dark:text-blue-400 hover:underline">+49 123 456 789</a> </div> </div>
-                <div class="contact-info-item"> <div class="contact-info-icon">⏰</div> <div class="contact-info-content"> <div class="contact-info-title">Geschäftszeiten</div> <p>Montag - Freitag: 9:00 - 17:00 Uhr</p> </div> </div>
-              </div>
+             <div>
+               <h3 class="text-2xl font-bold mb-6">Kontaktinformationen</h3>
+               <div class="contact-card">
+                 <div class="contact-info-item"> <div class="contact-info-icon">📧</div> <div class="contact-info-content"> <div class="contact-info-title">E-Mail</div> <a href="mailto:info@kommando-platform.com" class="text-blue-600 dark:text-blue-400 hover:underline">info@kommando-platform.com</a> </div> </div>
+                 <div class="contact-info-item"> <div class="contact-info-icon">📞</div> <div class="contact-info-content"> <div class="contact-info-title">Telefon</div> <a href="tel:+4912345678" class="text-blue-600 dark:text-blue-400 hover:underline">+49 123 456 789</a> </div> </div>
+                 <div class="contact-info-item"> <div class="contact-info-icon">⏰</div> <div class="contact-info-content"> <div class="contact-info-title">Geschäftszeiten</div> <p>Montag - Freitag: 9:00 - 17:00 Uhr</p> </div> </div>
+               </div>
 
-              <h3 class="text-xl font-bold mt-8 mb-4">Support nach Plattform</h3>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="contact-card"><h4 class="font-bold text-lg mb-2" style="color: var(--mpu-color);">MPU Plattform</h4><p class="mb-2">Fragen zur MPU-Vorbereitung:</p><a href="mailto:mpu@kommando-platform.com" class="text-blue-600 dark:text-blue-400 hover:underline">mpu@kommando-platform.com</a></div>
-                <div class="contact-card"><h4 class="font-bold text-lg mb-2" style="color: var(--aging-color);">JUNGSINGULÄR</h4><p class="mb-2">Fragen zu Alterungsforschung:</p><a href="mailto:aging@kommando-platform.com" class="text-blue-600 dark:text-blue-400 hover:underline">aging@kommando-platform.com</a></div>
-                <div class="contact-card"><h4 class="font-bold text-lg mb-2" style="color: var(--trading-color);">GROGAB TRADE</h4><p class="mb-2">Trading-bezogene Anfragen:</p><a href="mailto:trading@kommando-platform.com" class="text-blue-600 dark:text-blue-400 hover:underline">trading@kommando-platform.com</a></div>
-                <div class="contact-card"><h4 class="font-bold text-lg mb-2" style="color: var(--simulation-color);">KerrCode</h4><p class="mb-2">Fragen zu Simulationen:</p><a href="mailto:simulation@kommando-platform.com" class="text-blue-600 dark:text-blue-400 hover:underline">simulation@kommando-platform.com</a></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+               <h3 class="text-xl font-bold mt-8 mb-4">Support nach Plattform</h3>
+               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                 <div class="contact-card"><h4 class="font-bold text-lg mb-2" style="color: var(--mpu-color);">MPU Plattform</h4><p class="mb-2">Fragen zur MPU-Vorbereitung:</p><a href="mailto:mpu@kommando-platform.com" class="text-blue-600 dark:text-blue-400 hover:underline">mpu@kommando-platform.com</a></div>
+                 <div class="contact-card"><h4 class="font-bold text-lg mb-2" style="color: var(--aging-color);">JUNGSINGULÄR</h4><p class="mb-2">Fragen zu Alterungsforschung:</p><a href="mailto:aging@kommando-platform.com" class="text-blue-600 dark:text-blue-400 hover:underline">aging@kommando-platform.com</a></div>
+                 <div class="contact-card"><h4 class="font-bold text-lg mb-2" style="color: var(--trading-color);">GROGAB TRADE</h4><p class="mb-2">Trading-bezogene Anfragen:</p><a href="mailto:trading@kommando-platform.com" class="text-blue-600 dark:text-blue-400 hover:underline">trading@kommando-platform.com</a></div>
+                 <div class="contact-card"><h4 class="font-bold text-lg mb-2" style="color: var(--simulation-color);">KerrCode</h4><p class="mb-2">Fragen zu Simulationen:</p><a href="mailto:simulation@kommando-platform.com" class="text-blue-600 dark:text-blue-400 hover:underline">simulation@kommando-platform.com</a></div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </section>
 
-      <section class="section bg-gray-50 dark:bg-gray-900">
-        <div class="container mx-auto max-w-4xl">
-          <h2 class="section-title text-3xl">Häufig gestellte Fragen zum Support</h2> <!-- Changed Title -->
-          <div class="faq-container">
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Wie schnell kann ich mit einer Antwort rechnen?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Wir bemühen uns, alle Anfragen innerhalb von 24-48 Stunden zu beantworten (Mo-Fr). Bei technischen Supportanfragen hängt die Antwortzeit von deinem Tarif ab (siehe Features-Vergleich).</p></div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Bietet ihr persönlichen Support vor Ort an?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Derzeit bieten wir ausschließlich Remote-Support per E-Mail, Telefon oder Video-Call an. Für Firmenkunden können individuelle Schulungen vereinbart werden.</p></div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Wie kann ich meinen Tarif ändern oder kündigen?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Du kannst deinen Tarif jederzeit in deinem Account-Dashboard ändern oder uns über billing@kommando-platform.com kontaktieren. Die Kündigungsfrist beträgt 30 Tage zum Monatsende.</p></div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Bietet ihr individuelle Lösungen für Unternehmen an?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Ja, wir bieten maßgeschneiderte Lösungen für Unternehmen, Fahrschulen, Gesundheitseinrichtungen und Bildungsinstitutionen. Kontaktiere uns unter business@kommando-platform.com für ein individuelles Angebot.</p></div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Wo finde ich Hilfe zur Bedienung der Plattformen?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Jede Plattform verfügt über einen integrierten KI-Assistenten, der bei Fragen zur Bedienung hilft. Zusätzlich findest du in jeder Plattform einen Hilfebereich ("?") mit ausführlichen Anleitungen und Video-Tutorials (für Pro/Ultra-Nutzer).</p></div></div>
-          </div>
-        </div>
-      </section>
+       <section class="section bg-gray-50 dark:bg-gray-900">
+         <div class="container mx-auto max-w-4xl">
+           <h2 class="section-title text-3xl">Häufig gestellte Fragen zum Support</h2> <div class="faq-container">
+             <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Wie schnell kann ich mit einer Antwort rechnen?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Wir bemühen uns, alle Anfragen innerhalb von 24-48 Stunden zu beantworten (Mo-Fr). Bei technischen Supportanfragen hängt die Antwortzeit von deinem Tarif ab (siehe Features-Vergleich).</p></div></div>
+             <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Bietet ihr persönlichen Support vor Ort an?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Derzeit bieten wir ausschließlich Remote-Support per E-Mail, Telefon oder Video-Call an. Für Firmenkunden können individuelle Schulungen vereinbart werden.</p></div></div>
+             <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Wie kann ich meinen Tarif ändern oder kündigen?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Du kannst deinen Tarif jederzeit in deinem Account-Dashboard ändern oder uns über billing@kommando-platform.com kontaktieren. Die Kündigungsfrist beträgt 30 Tage zum Monatsende.</p></div></div>
+             <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Bietet ihr individuelle Lösungen für Unternehmen an?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Ja, wir bieten maßgeschneiderte Lösungen für Unternehmen, Fahrschulen, Gesundheitseinrichtungen und Bildungsinstitutionen. Kontaktiere uns unter business@kommando-platform.com für ein individuelles Angebot.</p></div></div>
+             <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Wo finde ich Hilfe zur Bedienung der Plattformen?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Jede Plattform verfügt über einen integrierten KI-Assistenten, der bei Fragen zur Bedienung hilft. Zusätzlich findest du in jeder Plattform einen Hilfebereich ("?") mit ausführlichen Anleitungen und Video-Tutorials (für Pro/Ultra-Nutzer).</p></div></div>
+           </div>
+         </div>
+       </section>
 
-      <section class="section">
-        <div class="container mx-auto">
-          <h2 class="section-title text-3xl">Unser Standort</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div>
-              <div class="map-container">
-                <div style="background-color: #e9ecef; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
-                  <p class="text-gray-600">Google Maps Karte würde hier angezeigt</p>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h3 class="text-xl font-bold mb-4">KOMMANDO PLATFORM</h3>
-              <p class="mb-4">Hauptsitz</p>
-              <address class="not-italic mb-6">Musterstraße 123<br>10115 Berlin<br>Deutschland</address>
-              <p class="mb-2"><strong>Öffentliche Verkehrsmittel:</strong></p>
-              <p class="mb-6">U-Bahn: U8 (Station Bernauer Straße)<br>Tram: M10 (Haltestelle Nordbahnhof)</p>
-              <p><em>Bitte vereinbare einen Termin vor deinem Besuch.</em></p>
-            </div>
-          </div>
-        </div>
-      </section>
+       <section class="section">
+         <div class="container mx-auto">
+           <h2 class="section-title text-3xl">Unser Standort</h2>
+           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+             <div>
+               <div class="map-container">
+                 <div style="background-color: #e9ecef; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                   <p class="text-gray-600">Google Maps Karte würde hier angezeigt</p>
+                 </div>
+               </div>
+             </div>
+             <div>
+               <h3 class="text-xl font-bold mb-4">KOMMANDO PLATFORM</h3>
+               <p class="mb-4">Hauptsitz</p>
+               <address class="not-italic mb-6">Musterstraße 123<br>10115 Berlin<br>Deutschland</address>
+               <p class="mb-2"><strong>Öffentliche Verkehrsmittel:</strong></p>
+               <p class="mb-6">U-Bahn: U8 (Station Bernauer Straße)<br>Tram: M10 (Haltestelle Nordbahnhof)</p>
+               <p><em>Bitte vereinbare einen Termin vor deinem Besuch.</em></p>
+             </div>
+           </div>
+         </div>
+       </section>
 
-      <section class="section bg-blue-900 text-white">
-        <div class="container mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-6">Bereit zum Starten?</h2>
-          <p class="text-xl mb-8">Entdecke jetzt das volle Potenzial der KOMMANDO-Plattformen</p>
-          <div class="flex justify-center gap-4 flex-wrap">
-            <a href="#" class="btn-primary bg-white text-blue-900 hover:bg-gray-200" onclick="switchTab('pricing')">PREISE & CHECKOUT</a>
-            <a href="#" class="btn-secondary border-white text-white hover:bg-white hover:text-blue-900" onclick="goToDashboard()">DASHBOARD ÖFFNEN</a>
-          </div>
-        </div>
-      </section>
-      <!-- End Contact Content -->
-  </div>
+       <section class="section bg-blue-900 text-white">
+         <div class="container mx-auto text-center">
+           <h2 class="text-3xl font-bold mb-6">Bereit zum Starten?</h2>
+           <p class="text-xl mb-8">Entdecke jetzt das volle Potenzial der KOMMANDO-Plattformen</p>
+           <div class="flex justify-center gap-4 flex-wrap">
+             <a href="#" class="btn-primary bg-white text-blue-900 hover:bg-gray-200" onclick="switchTab('pricing')">PREISE</a> <a href="#" class="btn-secondary border-white text-white hover:bg-white hover:text-blue-900" onclick="goToDashboard()">DASHBOARD ÖFFNEN</a>
+           </div>
+         </div>
+       </section>
+       </div>
 
   <footer>
     <div class="container mx-auto px-4">
@@ -1367,47 +1302,38 @@
         <div>
           <h3 class="text-lg font-bold mb-4">Plattformen</h3>
           <ul class="space-y-2">
-            <li><a href="#" class="hover:text-blue-300" onclick="openExternalLink('https://zaha175.github.io/MPUPLATFORMULTRA1/')">MPU Plattform</a></li>
-            <li><a href="#" class="hover:text-blue-300" onclick="openExternalLink('https://zaha175.github.io/ALTERUNGSSTOPPPLATFORMULTRA2/')">JUNGSINGULÄR</a></li>
-            <li><a href="#" class="hover:text-blue-300" onclick="openExternalLink('https://zaha175.github.io/GROGAB-TRADING/')">GROGAB TRADE</a></li>
-            <li><a href="#" class="hover:text-blue-300" onclick="openExternalLink('https://zaha175.github.io/PLATFORMCODEULTRA/')">KerrCode</a></li>
-            <li><a href="#" class="hover:text-blue-300" onclick="goToDashboard()">Dashboard</a></li>
+            <li><a href="https://zaha175.github.io/MPUPLATFORMULTRA1/" class="hover:text-blue-300" target="_blank" rel="noopener noreferrer">MPU Plattform</a></li> <li><a href="https://zaha175.github.io/ALTERUNGSSTOPPPLATFORMULTRA2/" class="hover:text-blue-300" target="_blank" rel="noopener noreferrer">JUNGSINGULÄR</a></li> <li><a href="https://zaha175.github.io/GROGAB-TRADING/" class="hover:text-blue-300" target="_blank" rel="noopener noreferrer">GROGAB TRADE</a></li> <li><a href="https://zaha175.github.io/PLATFORMCODEULTRA/" class="hover:text-blue-300" target="_blank" rel="noopener noreferrer">KerrCode</a></li> <li><a href="#" class="hover:text-blue-300" onclick="goToDashboard()">Dashboard</a></li>
           </ul>
         </div>
         <div>
           <h3 class="text-lg font-bold mb-4">Rechtliches</h3>
           <ul class="space-y-2">
-            <li><a href="#" class="hover:text-blue-300">Impressum</a></li>
-            <li><a href="#" class="hover:text-blue-300">Datenschutz</a></li>
-            <li><a href="#" class="hover:text-blue-300">AGB</a></li>
-            <li><a href="#" class="hover:text-blue-300">Widerrufsrecht</a></li>
-          </ul>
+            <li><a href="impressum.html" class="hover:text-blue-300">Impressum</a></li> <li><a href="datenschutz.html" class="hover:text-blue-300">Datenschutz</a></li> <li><a href="agb.html" class="hover:text-blue-300">AGB</a></li> <li><a href="widerruf.html" class="hover:text-blue-300">Widerrufsrecht</a></li> </ul>
         </div>
         <div>
           <h3 class="text-lg font-bold mb-4">Folge uns</h3>
           <div class="flex space-x-4">
-            <a href="#" class="hover:text-blue-300">FB</a> <a href="#" class="hover:text-blue-300">IG</a>
-            <a href="#" class="hover:text-blue-300">TW</a> <a href="#" class="hover:text-blue-300">YT</a>
+            <a href="#" class="hover:text-blue-300" target="_blank" rel="noopener noreferrer">FB</a>
+            <a href="#" class="hover:text-blue-300" target="_blank" rel="noopener noreferrer">IG</a>
+            <a href="#" class="hover:text-blue-300" target="_blank" rel="noopener noreferrer">TW</a>
+            <a href="#" class="hover:text-blue-300" target="_blank" rel="noopener noreferrer">YT</a>
           </div>
         </div>
       </div>
       <div class="border-t border-blue-800 mt-8 pt-4 text-sm text-center">
         <p>© 2024 KOMMANDO PLATFORM. Alle Rechte vorbehalten.</p>
-          <div class="mt-4 flex justify-center items-center space-x-4"> <!-- Added items-center -->
-            <img src="https://www.paypalobjects.com/webstatic/de_DE/i/de-pp-logo-100px.png" alt="PayPal" class="h-6"> <!-- Adjusted height -->
-            <img src="https://www.mastercard.de/content/dam/public/mastercardcom/eu/de/logos/mc-logo-52.svg" alt="Mastercard" class="h-6"> <!-- Adjusted height -->
-            <img src="https://www.visa.de/dam/VCOM/regional/cemea/germany/about-visa/images/visa-logo-40w.png" alt="Visa" class="h-4"> <!-- Adjusted height -->
-          </div>
+         <div class="mt-4 flex justify-center items-center space-x-4"> <img src="https://www.paypalobjects.com/webstatic/de_DE/i/de-pp-logo-100px.png" alt="PayPal" class="h-6"> <img src="https://www.mastercard.de/content/dam/public/mastercardcom/eu/de/logos/mc-logo-52.svg" alt="Mastercard" class="h-6"> <img src="https://www.visa.de/dam/VCOM/regional/cemea/germany/about-visa/images/visa-logo-40w.png" alt="Visa" class="h-4"> </div>
       </div>
     </div>
   </footer>
 
   <script>
+    // TODO: Vollständige Übersetzungen hinzufügen
     // Übersetzungen (Beispielhaft)
     const translations = {
-      de: { home: "HOME", pricing: "PREISE & CHECKOUT", features: "FEATURES", contact: "KONTAKT", dashboard: "DASHBOARD", /* ... */ },
-      en: { home: "HOME", pricing: "PRICING & CHECKOUT", features: "FEATURES", contact: "CONTACT", dashboard: "DASHBOARD", /* ... */ },
-      ro: { home: "ACASĂ", pricing: "PREȚURI & CHECKOUT", features: "CARACTERISTICI", contact: "CONTACT", dashboard: "TABLOU DE BORD", /* ... */ }
+      de: { home: "HOME", pricing: "PREISE", features: "FEATURES", contact: "KONTAKT", dashboard: "DASHBOARD", /* ... */ },
+      en: { home: "HOME", pricing: "PRICING", features: "FEATURES", contact: "CONTACT", dashboard: "DASHBOARD", /* ... */ },
+      ro: { home: "ACASĂ", pricing: "PREȚURI", features: "CARACTERISTICI", contact: "CONTACT", dashboard: "TABLOU DE BORD", /* ... */ }
     };
 
     // Funktion zum Setzen der Sprache
@@ -1432,12 +1358,13 @@
 
     // Zum Dashboard navigieren
     function goToDashboard() {
-      window.open("https://zaha175.github.io/KOMMANDOPLATFORMALTERNATIV/", "_blank");
+      // Added noopener,noreferrer for security
+      window.open("https://zaha175.github.io/KOMMANDOPLATFORMALTERNATIV/", "_blank", "noopener,noreferrer");
     }
 
-    // Externe Links öffnen
+    // Externe Links öffnen (obsolete, da target/rel direkt hinzugefügt wurden, aber zur Sicherheit belassen)
     function openExternalLink(url) {
-      window.open(url, "_blank");
+       window.open(url, "_blank", "noopener,noreferrer");
     }
 
     // Zu einem Abschnitt scrollen (generisch)
@@ -1447,10 +1374,11 @@
         // Stelle sicher, dass der Home-Tab aktiv ist, bevor gescrollt wird (für Links im Home-Tab)
         if (section.closest('.tab-content').id === 'home-content') {
              if (!document.getElementById('home-content').classList.contains('active')) {
-                switchTab('home');
-                setTimeout(() => { section.scrollIntoView({ behavior: 'smooth' }); }, 100);
+                 switchTab('home');
+                 // Kurze Verzögerung, damit der Tab-Wechsel abgeschlossen ist
+                 setTimeout(() => { section.scrollIntoView({ behavior: 'smooth' }); }, 100);
              } else {
-                section.scrollIntoView({ behavior: 'smooth' });
+                 section.scrollIntoView({ behavior: 'smooth' });
              }
         } else {
              // Für Links in anderen Tabs (falls benötigt) oder allgemeine Anker
@@ -1494,7 +1422,7 @@
     }
 
     // Plan auswählen und Checkout-Zusammenfassung aktualisieren
-    function selectPlan(planName, price) {
+    function selectPlan(planName, price, buttonElement) {
         // Update summary display
         const summaryPlanName = document.getElementById('summary-plan-name');
         const summaryPlanPrice = document.getElementById('summary-plan-price');
@@ -1523,31 +1451,51 @@
             }
         }
 
+        // NEW: Highlight selected pricing card
+        const allPricingCards = document.querySelectorAll('.pricing-card');
+        allPricingCards.forEach(card => card.classList.remove('selected-plan'));
+
+        // Find the parent pricing card of the clicked button
+        if (buttonElement) {
+            const selectedCard = buttonElement.closest('.pricing-card');
+            if (selectedCard) {
+                selectedCard.classList.add('selected-plan');
+            }
+        } else {
+            // Fallback if buttonElement is not passed (e.g., initial load)
+            const cardToSelect = document.querySelector(`.pricing-card[data-plan="${planName}"]`);
+            if (cardToSelect) {
+                cardToSelect.classList.add('selected-plan');
+            }
+        }
+
 
         // Scroll to the checkout section (optional, redundant if link already does this)
         // const checkoutSection = document.getElementById('checkout-section');
         // if (checkoutSection) {
-        //     checkoutSection.scrollIntoView({ behavior: 'smooth' });
+        //      checkoutSection.scrollIntoView({ behavior: 'smooth' });
         // }
     }
 
 
     // Formular-Handling (Beispielhaft für Kontakt und Checkout)
     function handleFormSubmit(formId, message) {
-        const form = document.getElementById(formId);
-        if(form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                // Hier würde die tatsächliche Form-Verarbeitung/Validierung/Senden stattfinden
-                alert(message);
-                this.reset(); // Formular zurücksetzen nach dem Senden
+         const form = document.getElementById(formId);
+         if(form) {
+             form.addEventListener('submit', function(e) {
+                 e.preventDefault();
+                 // Hier würde die tatsächliche Form-Verarbeitung/Validierung/Senden stattfinden
+                 // Verwende eine bessere Benachrichtigungsmethode statt alert()
+                 console.log("Form submitted:", formId, message);
+                 alert(message); // Beibehalten, da keine bessere Methode spezifiziert wurde
+                 this.reset(); // Formular zurücksetzen nach dem Senden
                  // Ggf. zur Bestätigungsseite weiterleiten (für Checkout)
-                if (formId === 'checkout-form') {
-                   console.log("Weiterleitung zur Bestätigungsseite simulieren...");
-                   // window.location.href = 'confirmation.html'; // Echte Weiterleitung
-                }
-            });
-        }
+                 if (formId === 'checkout-form') {
+                     console.log("Weiterleitung zur Bestätigungsseite simulieren...");
+                     // window.location.href = 'confirmation.html'; // Echte Weiterleitung
+                 }
+             });
+         }
     }
 
 
@@ -1595,8 +1543,8 @@
            if(firstPayment) selectPayment(firstPayment);
        }
 
-        // Setze initialen Plan in der Zusammenfassung (z.B. Pro als Standard)
-       selectPlan('Pro', 59.99);
+        // Setze initialen Plan in der Zusammenfassung und markiere die Karte (z.B. Pro als Standard)
+       selectPlan('Pro', 59.99); // Lässt buttonElement weg, verwendet Fallback
 
     });
   </script>
