@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KOMMANDO PLATFORM - Mission Control für Ihr digitales Leben</title>
-  <meta name="description" content="Die KOMMANDO-Plattform: MPU-Training, Alterungsstopp-Technologien, Trading-Tools, Simulationen, Kontakt und Checkout in einem kompletten digitalen Ökosystem.">
-  <meta name="keywords" content="MPU Training, Reaktionstest, Alterungsstopp, Trading, Simulation, KOMMANDO, DAX Daytrading, JUNGSINGULÄR, KerrCode, Kontakt, Support, Checkout, Bezahlung">
+  <meta name="description" content="Die KOMMANDO-Plattform: MPU-Training, Alterungsstopp-Technologien, Trading-Tools, Simulationen, Preise, Kontakt und Checkout in einem kompletten digitalen Ökosystem.">
+  <meta name="keywords" content="MPU Training, Reaktionstest, Alterungsstopp, Trading, Simulation, KOMMANDO, DAX Daytrading, JUNGSINGULÄR, KerrCode, Preise, Kontakt, Support, Checkout, Bezahlung">
   <meta name="author" content="zaha175">
   <meta property="og:title" content="KOMMANDO PLATFORM">
-  <meta property="og:description" content="Die KOMMANDO-Plattform: MPU-Training, Alterungsstopp-Technologien, Trading-Tools und Simulationen in einem kompletten digitalen Ökosystem.">
+  <meta property="og:description" content="Die KOMMANDO-Plattform: MPU-Training, Alterungsstopp-Technologien, Trading-Tools, Simulationen, Preise, Kontakt und Checkout in einem kompletten digitalen Ökosystem.">
   <meta property="og:image" content="https://cdn.gamma.app/fhpleqvbjim2f32/9aa69d36efe044198d779e76539fe786/original/KOMMANDO.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -30,6 +30,10 @@
       --aging-color: #0066cc;
       --trading-color: #006600;
       --simulation-color: #6600cc;
+    }
+
+    html {
+        scroll-behavior: smooth; /* Enable smooth scrolling */
     }
 
     body {
@@ -220,6 +224,7 @@
     .card-icon-trading { background-color: var(--trading-color); }
     .card-icon-simulation { background-color: var(--simulation-color); }
 
+    /* Pricing Card Specific Styles */
     .pricing-card { border: 2px solid transparent; transition: all 0.3s ease; }
     .pricing-card:hover { border-color: var(--primary-color); }
     .pricing-card.popular { border-color: var(--secondary-color); position: relative; }
@@ -229,6 +234,16 @@
       padding: 0.5rem 1rem; font-weight: bold;
       transform: translateY(-50%); border-radius: 0.25rem;
     }
+     .price { font-size: 2.5rem; font-weight: bold; margin: 1rem 0; color: var(--primary-color); }
+    .price-period { font-size: 1rem; color: #777; font-weight: normal; }
+    body.dark-mode .price-period { color: #aaa; }
+
+    /* Feature List Styles (used in Pricing Cards) */
+    .feature-list li { margin-bottom: 0.5rem; display: flex; align-items: center; }
+    .feature-list li::before { content: "✓"; color: var(--primary-color); font-weight: bold; margin-right: 0.5rem; }
+    .feature-list li.unavailable { color: #999; }
+    .feature-list li.unavailable::before { content: "✗"; color: #999; }
+
 
     .testimonial {
       background-color: var(--card-light);
@@ -242,15 +257,6 @@
       font-size: 5rem; font-family: Georgia, serif; color: var(--primary-color);
       opacity: 0.2; line-height: 1;
     }
-
-    .feature-list li { margin-bottom: 0.5rem; display: flex; align-items: center; }
-    .feature-list li::before { content: "✓"; color: var(--primary-color); font-weight: bold; margin-right: 0.5rem; }
-    .feature-list li.unavailable { color: #999; }
-    .feature-list li.unavailable::before { content: "✗"; color: #999; }
-
-    .price { font-size: 2.5rem; font-weight: bold; margin: 1rem 0; color: var(--primary-color); }
-    .price-period { font-size: 1rem; color: #777; font-weight: normal; }
-    body.dark-mode .price-period { color: #aaa; }
 
     .tab-nav {
       display: flex; justify-content: center; gap: 10px;
@@ -398,9 +404,12 @@
     body.dark-mode .summary-item div,
     body.dark-mode .contact-info-content p,
     body.dark-mode .contact-info-content a,
-    body.dark-mode address {
+    body.dark-mode address,
+    body.dark-mode .feature-list li { /* Added feature-list li */
       color: var(--text-dark);
     }
+     body.dark-mode .feature-list li.unavailable { color: #999 !important; } /* Ensure unavailable is still gray */
+
 
     body.dark-mode .section,
     body.dark-mode .tab-content,
@@ -461,7 +470,7 @@
 
   <nav class="tab-nav">
     <button id="home-tab" class="tab-btn active" onclick="switchTab('home')">HOME</button>
-    <button id="pricing-tab" class="tab-btn" onclick="switchTab('pricing')">PREISE/CHECKOUT</button> <!-- Renamed for clarity -->
+    <button id="pricing-tab" class="tab-btn" onclick="switchTab('pricing')">PREISE & CHECKOUT</button> <!-- Changed Name -->
     <button id="features-tab" class="tab-btn" onclick="switchTab('features')">FEATURES</button>
     <button id="contact-tab" class="tab-btn" onclick="switchTab('contact')">KONTAKT</button>
     <button id="dashboard-tab" class="tab-btn" onclick="goToDashboard()">DASHBOARD</button>
@@ -693,8 +702,192 @@
 
   <!-- PRICING/CHECKOUT TAB -->
   <div id="pricing-content" class="tab-content">
+      <!-- Start Pricing Section -->
+       <section class="section">
+        <div class="container mx-auto">
+            <h2 class="section-title text-3xl">Unsere Preispläne</h2>
+            <p class="text-center mb-12 max-w-3xl mx-auto">Wähle den Plan, der am besten zu deinen Bedürfnissen passt. Alle Pläne bieten Zugang zu unserem Dashboard und Kernfunktionen der Plattformen.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- Basic Plan -->
+            <div class="card pricing-card p-6 relative">
+                <h3 class="text-xl font-bold text-center mb-4">Basic</h3>
+                <div class="price text-center">
+                29,99€ <span class="price-period">/monat</span>
+                </div>
+                <p class="text-center mb-6">Ideal für Einsteiger, die eine einzelne Plattform intensiv nutzen möchten.</p>
+
+                <ul class="feature-list mb-6">
+                <li>Zugang zu 1 Plattform deiner Wahl</li>
+                <li>Basis-Dashboard</li>
+                <li>Grundlegende Reaktionstests</li>
+                <li>KI-Assistent mit 20 Anfragen/Monat</li>
+                <li class="unavailable">Keine Cross-Plattform-Integration</li>
+                <li class="unavailable">Keine erweiterten Simulationen</li>
+                <li class="unavailable">Kein Premium-Support</li>
+                </ul>
+
+                <div class="mt-auto text-center">
+                    <!-- Updated Button: Scrolls to checkout section -->
+                    <a href="#checkout-section" class="btn-secondary w-full" onclick="selectPlan('Basic', 29.99)">DIESEN PLAN WÄHLEN</a>
+                </div>
+            </div>
+
+            <!-- Pro Plan -->
+            <div class="card pricing-card p-6 relative popular">
+                <div class="popular-badge">BELIEBT</div>
+                <h3 class="text-xl font-bold text-center mb-4">Pro</h3>
+                <div class="price text-center">
+                59,99€ <span class="price-period">/monat</span>
+                </div>
+                <p class="text-center mb-6">Perfekt für aktive Nutzer, die mehrere Plattformen benötigen.</p>
+
+                <ul class="feature-list mb-6">
+                <li>Zugang zu 3 Plattformen deiner Wahl</li>
+                <li>Erweitertes Dashboard mit Personalisierung</li>
+                <li>Alle Reaktions- und MPU-Tests</li>
+                <li>KI-Assistent mit 50 Anfragen/Monat</li>
+                <li>Basis-Cross-Plattform-Integration</li>
+                <li>Alterungsstopp-Simulator (Basisversion)</li>
+                <li class="unavailable">Kein Premium-Support</li>
+                </ul>
+
+                <div class="mt-auto text-center">
+                    <!-- Updated Button: Scrolls to checkout section -->
+                    <a href="#checkout-section" class="btn-primary w-full" onclick="selectPlan('Pro', 59.99)">DIESEN PLAN WÄHLEN</a>
+                </div>
+            </div>
+
+            <!-- Ultra Plan -->
+            <div class="card pricing-card p-6 relative">
+                <h3 class="text-xl font-bold text-center mb-4">Ultra</h3>
+                <div class="price text-center">
+                99,99€ <span class="price-period">/monat</span>
+                </div>
+                <p class="text-center mb-6">Die komplette Lösung für maximale Leistung und volle Integration.</p>
+
+                <ul class="feature-list mb-6">
+                <li>Uneingeschränkter Zugang zu ALLEN Plattformen</li>
+                <li>Ultra-Dashboard mit vollständiger Anpassung</li>
+                <li>Alle Tests, Simulationen und Tools</li>
+                <li>Unbegrenzte KI-Assistent Anfragen</li>
+                <li>Vollständige Cross-Plattform-Integration</li>
+                <li>KerrCode Simulationen mit erweiterten Parametern</li>
+                <li>Premium-Support mit 24h Reaktionszeit</li>
+                </ul>
+
+                <div class="mt-auto text-center">
+                    <!-- Updated Button: Scrolls to checkout section -->
+                     <a href="#checkout-section" class="btn-secondary w-full" onclick="selectPlan('Ultra', 99.99)">DIESEN PLAN WÄHLEN</a>
+                </div>
+            </div>
+            </div>
+
+            <!-- Specialized Plans (optional, keep or remove as needed) -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-center mb-6">Spezialisierte Pläne</h3>
+                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto"> <!-- Adjusted max-width for 4 columns -->
+                    <!-- MPU Focus Plan -->
+                    <div class="card pricing-card card-mpu p-6 relative">
+                      <h3 class="text-xl font-bold text-center mb-4">MPU Focus</h3>
+                      <div class="price text-center"> 39,99€ <span class="price-period">/monat</span> </div>
+                      <p class="text-center mb-6 text-sm">Spezialisiert auf optimale MPU-Vorbereitung.</p>
+                      <ul class="feature-list mb-6 text-sm">
+                        <li>Vollständige MPU-Plattform</li>
+                        <li>Alle Reaktionstests</li>
+                        <li>Umfassender MPU-Simulator</li>
+                        <li>KI-Assistent für MPU-Fragen</li>
+                        <li>Fortschrittsverfolgung</li>
+                      </ul>
+                      <div class="mt-auto text-center"> <a href="#checkout-section" class="btn-primary btn-mpu w-full text-sm" onclick="selectPlan('MPU Focus', 39.99)">WÄHLEN</a> </div>
+                    </div>
+                    <!-- Aging Focus Plan -->
+                    <div class="card pricing-card card-aging p-6 relative">
+                      <h3 class="text-xl font-bold text-center mb-4">Aging Focus</h3>
+                      <div class="price text-center"> 39,99€ <span class="price-period">/monat</span> </div>
+                      <p class="text-center mb-6 text-sm">Für Alterungsstopp-Enthusiasten.</p>
+                      <ul class="feature-list mb-6 text-sm">
+                        <li>Vollständige JUNGSINGULÄR</li>
+                        <li>Biologischer Altersrechner</li>
+                        <li>Persönl. Empfehlungen</li>
+                        <li>Intervallfasten-Tracker</li>
+                        <li>KI-Berater Alterung</li>
+                      </ul>
+                      <div class="mt-auto text-center"> <a href="#checkout-section" class="btn-primary btn-aging w-full text-sm" onclick="selectPlan('Aging Focus', 39.99)">WÄHLEN</a> </div>
+                    </div>
+                    <!-- Trading Focus Plan -->
+                    <div class="card pricing-card card-trading p-6 relative">
+                      <h3 class="text-xl font-bold text-center mb-4">Trading Focus</h3>
+                      <div class="price text-center"> 39,99€ <span class="price-period">/monat</span> </div>
+                      <p class="text-center mb-6 text-sm">Für Trading-Enthusiasten.</p>
+                      <ul class="feature-list mb-6 text-sm">
+                        <li>Vollständige GROGAB</li>
+                        <li>Erw. Chart-Analysen</li>
+                        <li>Risikomanagement-Tools</li>
+                        <li>Strategie-Backtesting</li>
+                        <li>Simuliertes Portfolio</li>
+                      </ul>
+                      <div class="mt-auto text-center"> <a href="#checkout-section" class="btn-primary btn-trading w-full text-sm" onclick="selectPlan('Trading Focus', 39.99)">WÄHLEN</a> </div>
+                    </div>
+                    <!-- Simulation Focus Plan -->
+                    <div class="card pricing-card card-simulation p-6 relative">
+                      <h3 class="text-xl font-bold text-center mb-4">Simulation Focus</h3>
+                      <div class="price text-center"> 39,99€ <span class="price-period">/monat</span> </div>
+                      <p class="text-center mb-6 text-sm">Für Physik & Simulation.</p>
+                       <ul class="feature-list mb-6 text-sm">
+                        <li>Vollständige KerrCode</li>
+                        <li>Erw. 5D-Simulationen</li>
+                        <li>Kerr-Schwarze-Loch-Modelle</li>
+                        <li>Parametrisierbare Quantensim.</li>
+                        <li>Export der Ergebnisse</li>
+                      </ul>
+                      <div class="mt-auto text-center"> <a href="#checkout-section" class="btn-primary btn-simulation w-full text-sm" onclick="selectPlan('Simulation Focus', 39.99)">WÄHLEN</a> </div>
+                    </div>
+                  </div>
+            </div>
+
+
+            <div class="mt-12 text-center">
+            <p class="mb-4">Brauchst du eine individuelle Lösung?</p>
+            <a href="#" class="btn-secondary" onclick="switchTab('contact')">KONTAKTIERE UNS</a>
+            </div>
+        </div>
+        </section>
+      <!-- End Pricing Section -->
+
+      <!-- Start Pricing FAQs Section -->
+        <section class="section bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="section-title text-3xl">Häufig gestellte Fragen zu Preisen</h2>
+                <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)"> Wie funktioniert die Abrechnung?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer px-4"><p>Die Abrechnung erfolgt monatlich im Voraus. Du kannst jederzeit kündigen, die Kündigung wird zum Ende des aktuellen Abrechnungsmonats wirksam.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)"> Kann ich Plattformen beim Pro-Plan wechseln?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer px-4"><p>Ja, beim Pro-Plan kannst du einmal pro Abrechnungsmonat deine ausgewählten 3 Plattformen im Dashboard ändern.</p></div>
+                </div>
+                 <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)"> Gibt es Rabatte für jährliche Zahlung?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer px-4"><p>Ja, bei jährlicher Vorauszahlung erhältst du in der Regel einen Rabatt, der 2 Monatsbeiträgen entspricht. Diese Option kannst du im Checkout auswählen.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)"> Was passiert nach der Kündigung?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer px-4"><p>Nach Wirksamwerden der Kündigung hast du keinen Zugriff mehr auf die kostenpflichtigen Inhalte der Plattformen. Deine Basis-Accountdaten bleiben bestehen, falls du später reaktivieren möchtest, können aber auf Wunsch auch gelöscht werden.</p></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)"> Sind die spezialisierten Focus-Pläne erweiterbar?<span class="faq-icon">+</span></div>
+                    <div class="faq-answer px-4"><p>Die Focus-Pläne bieten vollen Zugriff auf die jeweilige Spezialplattform. Ein Upgrade auf Pro oder Ultra ist jederzeit über das Dashboard möglich, um Zugriff auf weitere Plattformen zu erhalten.</p></div>
+                 </div>
+                </div>
+            </div>
+        </section>
+      <!-- End Pricing FAQs Section -->
+
+
       <!-- Start Checkout Content -->
-      <section class="section">
+      <section id="checkout-section" class="section pt-12"> <!-- Added ID and padding-top -->
         <div class="container mx-auto max-w-6xl">
           <h2 class="section-title text-3xl">Checkout</h2>
 
@@ -702,7 +895,7 @@
           <div class="checkout-steps mb-12">
             <div class="step completed">
               <div class="step-circle">1</div>
-              <div class="step-title">Tarifauswahl (implizit)</div>
+              <div class="step-title">Tarifauswahl</div>
             </div>
             <div class="step active">
               <div class="step-circle">2</div>
@@ -831,39 +1024,41 @@
               <h3 class="text-xl font-bold mb-6">Bestellübersicht</h3>
 
               <div class="checkout-summary">
-                 <!-- HINWEIS: Dies ist ein Beispiel. Der Inhalt sollte dynamisch basierend auf der Auswahl geladen werden. -->
+                 <!-- HINWEIS: Dieser Inhalt wird jetzt durch JavaScript aktualisiert -->
                 <div class="summary-item">
-                  <div class="font-bold">KOMMANDO Pro Plan</div>
-                  <div>59,99 €</div>
+                  <div class="font-bold" id="summary-plan-name">KOMMANDO Pro Plan</div>
+                  <div id="summary-plan-price">59,99 €</div>
                 </div>
 
                 <div class="summary-item">
-                  <div>Monatliche Abrechnung</div>
-                  <div>x1</div>
+                  <div>Abrechnung</div>
+                  <div>Monatlich</div>
                 </div>
 
-                <div class="summary-item">
-                  <div>Ausgewählte Plattformen</div>
-                  <div>
-                    <div>MPU Plattform</div>
-                    <div>JUNGSINGULÄR</div>
-                    <div>GROGAB TRADE</div>
-                  </div>
+                 <!-- Optional: Platform selection details for Pro Plan -->
+                 <div class="summary-item" id="summary-platforms" style="display: none;"> <!-- Hide initially -->
+                    <div>Ausgewählte Plattformen</div>
+                    <div>
+                        <div>MPU Plattform</div>
+                        <div>JUNGSINGULÄR</div>
+                        <div>GROGAB TRADE</div>
+                        <!-- This part needs more logic if you want users to actually select platforms -->
+                    </div>
                 </div>
 
                 <div class="summary-item">
                   <div>Zwischensumme</div>
-                  <div>59,99 €</div>
+                  <div id="summary-subtotal">59,99 €</div>
                 </div>
 
                 <div class="summary-item">
                   <div>MwSt. (19%)</div>
-                  <div>11,40 €</div>
+                  <div id="summary-vat">11,40 €</div>
                 </div>
 
                 <div class="summary-total flex justify-between">
                   <div>Gesamtsumme</div>
-                  <div>71,39 €</div>
+                  <div id="summary-total">71,39 €</div>
                 </div>
 
                 <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">
@@ -1115,13 +1310,13 @@
 
       <section class="section bg-gray-50 dark:bg-gray-900">
         <div class="container mx-auto max-w-4xl">
-          <h2 class="section-title text-3xl">Häufig gestellte Fragen</h2>
+          <h2 class="section-title text-3xl">Häufig gestellte Fragen zum Support</h2> <!-- Changed Title -->
           <div class="faq-container">
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Wie schnell kann ich mit einer Antwort rechnen?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Wir bemühen uns, alle Anfragen innerhalb von 24-48 Stunden zu beantworten. Bei technischen Supportanfragen hängt die Antwortzeit von deinem Tarif ab.</p></div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Bietet ihr persönlichen Support vor Ort an?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Derzeit bieten wir ausschließlich Remote-Support an. Für Firmenkunden können individuelle Schulungen vereinbart werden.</p></div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Wie kann ich meinen Tarif ändern oder kündigen?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Du kannst deinen Tarif in deinem Account-Bereich ändern oder uns per E-Mail kontaktieren. Die Kündigungsfrist beträgt 30 Tage.</p></div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Bietet ihr individuelle Lösungen für Unternehmen an?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Ja, kontaktiere uns unter business@kommando-platform.com für ein maßgeschneidertes Angebot.</p></div></div>
-            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Wo finde ich Hilfe zur Bedienung der Plattformen?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Jede Plattform hat einen KI-Assistenten und einen Hilfebereich mit Anleitungen und Tutorials.</p></div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Wie schnell kann ich mit einer Antwort rechnen?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Wir bemühen uns, alle Anfragen innerhalb von 24-48 Stunden zu beantworten (Mo-Fr). Bei technischen Supportanfragen hängt die Antwortzeit von deinem Tarif ab (siehe Features-Vergleich).</p></div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Bietet ihr persönlichen Support vor Ort an?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Derzeit bieten wir ausschließlich Remote-Support per E-Mail, Telefon oder Video-Call an. Für Firmenkunden können individuelle Schulungen vereinbart werden.</p></div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Wie kann ich meinen Tarif ändern oder kündigen?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Du kannst deinen Tarif jederzeit in deinem Account-Dashboard ändern oder uns über billing@kommando-platform.com kontaktieren. Die Kündigungsfrist beträgt 30 Tage zum Monatsende.</p></div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Bietet ihr individuelle Lösungen für Unternehmen an?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Ja, wir bieten maßgeschneiderte Lösungen für Unternehmen, Fahrschulen, Gesundheitseinrichtungen und Bildungsinstitutionen. Kontaktiere uns unter business@kommando-platform.com für ein individuelles Angebot.</p></div></div>
+            <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">Wo finde ich Hilfe zur Bedienung der Plattformen?<span class="faq-icon">+</span></div><div class="faq-answer px-4"><p>Jede Plattform verfügt über einen integrierten KI-Assistenten, der bei Fragen zur Bedienung hilft. Zusätzlich findest du in jeder Plattform einen Hilfebereich ("?") mit ausführlichen Anleitungen und Video-Tutorials (für Pro/Ultra-Nutzer).</p></div></div>
           </div>
         </div>
       </section>
@@ -1210,9 +1405,9 @@
   <script>
     // Übersetzungen (Beispielhaft)
     const translations = {
-      de: { home: "HOME", pricing: "PREISE/CHECKOUT", features: "FEATURES", contact: "KONTAKT", dashboard: "DASHBOARD", /* ... */ },
-      en: { home: "HOME", pricing: "PRICING/CHECKOUT", features: "FEATURES", contact: "CONTACT", dashboard: "DASHBOARD", /* ... */ },
-      ro: { home: "ACASĂ", pricing: "PREȚURI/CHECKOUT", features: "CARACTERISTICI", contact: "CONTACT", dashboard: "TABLOU DE BORD", /* ... */ }
+      de: { home: "HOME", pricing: "PREISE & CHECKOUT", features: "FEATURES", contact: "KONTAKT", dashboard: "DASHBOARD", /* ... */ },
+      en: { home: "HOME", pricing: "PRICING & CHECKOUT", features: "FEATURES", contact: "CONTACT", dashboard: "DASHBOARD", /* ... */ },
+      ro: { home: "ACASĂ", pricing: "PREȚURI & CHECKOUT", features: "CARACTERISTICI", contact: "CONTACT", dashboard: "TABLOU DE BORD", /* ... */ }
     };
 
     // Funktion zum Setzen der Sprache
@@ -1245,22 +1440,25 @@
       window.open(url, "_blank");
     }
 
-    // Zu einem Abschnitt scrollen
+    // Zu einem Abschnitt scrollen (generisch)
     function scrollToSection(sectionId) {
       const section = document.getElementById(sectionId);
       if (section) {
-        // Stelle sicher, dass der Home-Tab aktiv ist, bevor gescrollt wird
-        if (!document.getElementById('home-content').classList.contains('active')) {
-          switchTab('home');
-          // Kurze Verzögerung, damit der Tab-Wechsel abgeschlossen ist, bevor gescrollt wird
-          setTimeout(() => {
-             section.scrollIntoView({ behavior: 'smooth' });
-          }, 100);
+        // Stelle sicher, dass der Home-Tab aktiv ist, bevor gescrollt wird (für Links im Home-Tab)
+        if (section.closest('.tab-content').id === 'home-content') {
+             if (!document.getElementById('home-content').classList.contains('active')) {
+                switchTab('home');
+                setTimeout(() => { section.scrollIntoView({ behavior: 'smooth' }); }, 100);
+             } else {
+                section.scrollIntoView({ behavior: 'smooth' });
+             }
         } else {
-          section.scrollIntoView({ behavior: 'smooth' });
+             // Für Links in anderen Tabs (falls benötigt) oder allgemeine Anker
+             section.scrollIntoView({ behavior: 'smooth' });
         }
       }
     }
+
 
     // Dark Mode Toggle
     function toggleDarkMode() {
@@ -1294,6 +1492,45 @@
           if (creditCardForm) creditCardForm.style.display = 'none';
       }
     }
+
+    // Plan auswählen und Checkout-Zusammenfassung aktualisieren
+    function selectPlan(planName, price) {
+        // Update summary display
+        const summaryPlanName = document.getElementById('summary-plan-name');
+        const summaryPlanPrice = document.getElementById('summary-plan-price');
+        const summarySubtotal = document.getElementById('summary-subtotal');
+        const summaryVat = document.getElementById('summary-vat');
+        const summaryTotal = document.getElementById('summary-total');
+        const summaryPlatforms = document.getElementById('summary-platforms'); // Get platform details element
+
+        const vatRate = 0.19;
+        const subtotal = price;
+        const vatAmount = subtotal * vatRate;
+        const total = subtotal + vatAmount;
+
+        if(summaryPlanName) summaryPlanName.textContent = `KOMMANDO ${planName} Plan`;
+        if(summaryPlanPrice) summaryPlanPrice.textContent = `${subtotal.toFixed(2)} €`;
+        if(summarySubtotal) summarySubtotal.textContent = `${subtotal.toFixed(2)} €`;
+        if(summaryVat) summaryVat.textContent = `${vatAmount.toFixed(2)} €`;
+        if(summaryTotal) summaryTotal.textContent = `${total.toFixed(2)} €`;
+
+         // Show/hide platform details based on plan (Example for Pro)
+        if (summaryPlatforms) {
+            if (planName === 'Pro') {
+                summaryPlatforms.style.display = 'flex'; // Or 'block' depending on your layout
+            } else {
+                 summaryPlatforms.style.display = 'none';
+            }
+        }
+
+
+        // Scroll to the checkout section (optional, redundant if link already does this)
+        // const checkoutSection = document.getElementById('checkout-section');
+        // if (checkoutSection) {
+        //     checkoutSection.scrollIntoView({ behavior: 'smooth' });
+        // }
+    }
+
 
     // Formular-Handling (Beispielhaft für Kontakt und Checkout)
     function handleFormSubmit(formId, message) {
@@ -1357,6 +1594,9 @@
            const firstPayment = document.querySelector('.payment-method');
            if(firstPayment) selectPayment(firstPayment);
        }
+
+        // Setze initialen Plan in der Zusammenfassung (z.B. Pro als Standard)
+       selectPlan('Pro', 59.99);
 
     });
   </script>
